@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>일기장</title>
+    <link rel="stylesheet" href="diary.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>오늘의 일기</h1>
+      <textarea
+        id="diary-entry"
+        placeholder="오늘의 일기를 입력하세요"
+      ></textarea>
+      <button id="add-entry">추가</button>
+      <div id="entries"></div>
+    </div>
+    <!-- 모달 팝업 -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <!-- &times; = x 엔티티코드 -->
+        <span class="close-button">&times;</span>
+        <textarea id="edit-entry-textarea"></textarea>
+        <button id="save-edit">저장</button>
+      </div>
+    </div>
+    <script src="diary.js"></script>
+  </body>
+</html>
