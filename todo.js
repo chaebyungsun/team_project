@@ -9,6 +9,10 @@
 	•	deleteTask: 적절한 섹션에서 태스크를 삭제하고 필요 시 “등록된 데이터가 없습니다” 메시지를 표시합니다.
  */
 
+// app.js
+
+// app.js
+
 document.addEventListener("DOMContentLoaded", loadTasks);
 
 function loadTasks() {
