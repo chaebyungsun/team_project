@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">To-Do List</h1>
+        <div class="form-group">
+            <input type="text" id="task" class="form-control" placeholder="Enter a task">
+            <input type="date" id="deadline" class="form-control mt-2">
+            <select id="category" class="form-control mt-2">
+                <option value="Personal">Personal</option>
+                <option value="Work">Work</option>
+                <option value="Family">Family</option>
+                <option value="Other">Other</option>
+            </select>
+            <button class="btn btn-primary mt-2" onclick="addTask()"><i class="fas fa-plus"></i> Add</button>
+        </div>
+        <h3 class="mt-4">Pending Tasks</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Added Date</th>
+                    <th>Task</th>
+                    <th>Deadline</th>
+                    <th>Category</th>
+                    <th>Edit</th>
+                    <th>Complete</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="pendingTasks">
+                <tr id="noPendingTasks">
+                    <td colspan="7" class="text-center">No tasks registered.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 class="mt-4">Completed Tasks</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Added Date</th>
+                    <th>Task</th>
+                    <th>Deadline</th>
+                    <th>Category</th>
+                    <th>Cancel Complete</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="completedTasks">
+                <tr id="noCompletedTasks">
+                    <td colspan="6" class="text-center">No tasks registered.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="todo.js"></script>
+</body>
+
+</html>
