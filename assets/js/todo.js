@@ -9,10 +9,6 @@
 	•	deleteTask: 적절한 섹션에서 태스크를 삭제하고 필요 시 “등록된 데이터가 없습니다” 메시지를 표시합니다.
  */
 
-// app.js
-
-// app.js
-
 document.addEventListener("DOMContentLoaded", loadTasks);
 
 function loadTasks() {
@@ -51,6 +47,7 @@ function addTask() {
         dateAdded: new Date().toLocaleDateString(),
         category: categoryInput.value,
         completed: false,
+        favorite: false,
     };
 
     addTaskToDOM(task, false);
@@ -70,14 +67,14 @@ function addTaskToDOM(task, isCompleted) {
     const taskRow = document.createElement("tr");
     taskRow.setAttribute("data-id", task.id);
     taskRow.innerHTML = `
-    <td>${task.dateAdded}</td>
-    <td class="${task.completed ? "completed" : ""}">${task.text}</td>
-    <td>${task.deadline}</td>
-    <td>${task.category}</td>
-    ${isCompleted ? '<td><button class="btn btn-warning" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="btn btn-warning" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
-    ${isCompleted ? "" : '<td><button class="btn btn-success" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
-    <td><button class="btn btn-danger" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
-  `;
+        <td><button class="btn btn-link" onclick="toggleFavorite(this)"><i class="fas ${task.favorite ? "fa-heart" : "fa-heart-o"}"></i></button></td>
+        <td class="${task.completed ? "completed" : ""}">${task.text}</td>
+        <td>${task.deadline}</td>
+        <td>${task.category}</td>
+        ${isCompleted ? '<td><button class="btn btn-warning" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="btn btn-warning" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
+        ${isCompleted ? "" : '<td><button class="btn btn-success" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
+        <td><button class="btn btn-danger" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
+      `;
 
     document.getElementById(isCompleted ? "completedTasks" : "pendingTasks").appendChild(taskRow);
 }
@@ -163,5 +160,22 @@ function deleteTask(button, isCompleted) {
 
     if (isCompleted && tasks.length === 0) {
         document.getElementById("noCompletedTasks").style.display = "table-row";
+    }
+}
+
+function toggleFavorite(button) {
+    const row = button.parentElement.parentElement;
+    const taskId = row.getAttribute("data-id");
+    let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+    let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
+    let task = pendingTasks.find((task) => task.id == taskId) || completedTasks.find((task) => task.id == taskId);
+
+    if (task) {
+        task.favorite = !task.favorite;
+        button.querySelector("i").classList.toggle("fa-heart");
+        button.querySelector("i").classList.toggle("fa-heart-o");
+
+        localStorage.setItem("pendingTasks", JSON.stringify(pendingTasks));
+        localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
     }
 }
