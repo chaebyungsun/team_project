@@ -11,6 +11,29 @@ a {
   cursor: pointer;
 }
 
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+input:focus,
+input:active,
+select,
+select:focus,
+select:active {
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+.select {
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 button {
   background-color: #fff;
   border: none;
