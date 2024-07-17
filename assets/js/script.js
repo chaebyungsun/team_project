@@ -15,9 +15,9 @@ function renderCalendar(month, year) {
     const daysInMonth = new Date(year, month + 1, 0).getDate(); // 해당 월의 일 수
 
     calendarDays.innerHTML = ''; // 이전에 표시된 날짜들을 초기화
-    monthYear.innerText = `${months[month]} ${year}`; // 월과 연도를 설정
+    monthYear.innerText = ${months[month]} ${year}; // 월과 연도를 설정
 
-    monthTitle.innerText = `${months[month]}`
+    monthTitle.innerText = ${months[month]}
 
     // 이전 달의 일자에 대한 자리표시자를 생성
     for (let i = 1; i < firstDay; i++) {
