@@ -1,21 +1,4 @@
-/* nav start */
-.nav {
-  position: relative;
-}
-
-li.box-wrap {
-  position: absolute;
-  bottom: 20px;
-}
-
-#date-box {
-  display: flex;
-}
-
-#today,
-#day,
-#date,
-#month,
-#year {
-  margin-right: 7px; /* 각 날짜 요소 사이에 간격을 추가 */
+.weather-wrap {
+  margin-bottom: 2px;
+  font-size: 24px;
 }

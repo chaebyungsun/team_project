@@ -1,17 +1,8 @@
+@import "./reset.css";
 @import "./weather.css";
+@import "./date.css";
+@import "./todo.css";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-ol,
-ul {
-  list-style: none;
-}
-a {
-  text-decoration: inherit;
-}
 body {
   background-color: #f5f5f5;
 }

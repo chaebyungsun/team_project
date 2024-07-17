@@ -32,7 +32,7 @@ const getWeather = async (position) => {
     // 날씨에 따른 메시지 설정
     const weatherMessages = {
       Rain: "우산 챙기는 걸 잊지마!",
-      Snow: "눈이 와요! 미끄러지지 않게 조심해요!",
+      Snow: "미끄러지지 않게 조심해요!",
       Clouds: "구름이 많아요!",
       Clear: "맑아요!",
       Wind: "날아가지 않게 조심해요!",
@@ -40,8 +40,8 @@ const getWeather = async (position) => {
 
     // 온도에 따른 메시지 설정
     const tempMessages = {
-      hot: "폭염 주의!!! 에어컨을 키자구요!!",
-      cold: "롱패딩 입어요 안 그럼 얼어죽어요!!!",
+      hot: "폭염 주의!!! 에어컨 가동!!",
+      cold: "날씨가 추워요! 롱패딩 개시!!",
     }
 
     // 날씨 정보를 통해 온도에 따른 메시지 결정
@@ -63,9 +63,13 @@ const getWeather = async (position) => {
 
     // 날씨 아이콘과 메시지 설정
     weatherBox.innerHTML = `
-      <span id="weather">${weatherIcons[data.weather[0].main] || ""}</span>
-      <span id="temp">${Math.ceil(data.main.temp)}°C</span>
-      <span id="notice">${weatherMessage} ${tempMessage}</span>
+      <div class="weather-wrap">
+        <span id="weather-icon">${
+          weatherIcons[data.weather[0].main] || ""
+        }</span>
+        <span id="weather-temp">${Math.ceil(data.main.temp)}°C</span>
+      </div>
+      <span id="weather-notice">${weatherMessage} ${tempMessage}</span>
     `
   } catch (error) {
     // 에러가 발생한 경우 알림 요소에 메시지 설정

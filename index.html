@@ -12,29 +12,34 @@
     />
     <link rel="stylesheet" href="./assets/styles/style.css" />
   </head>
+
   <body>
     <div class="container">
       <!-- nav start -->
       <ul class="nav">
         <li class="active">
           <i class="fa-solid fa-house"></i>
-          <span>Dashboard</span>
+          <span><a href="./index.html">Dashboard</a></span>
         </li>
         <li>
           <i class="fa-solid fa-list-ul"></i>
-          <span>Todo</span>
+          <span><a href="./todo.html">Todo</a></span>
         </li>
         <li>
           <i class="fa-solid fa-newspaper"></i>
-          <span>Diary</span>
+          <span><a href="./diary.html">Diary</a></span>
         </li>
         <li class="box-wrap">
           <div id="date-box">
-            <span id="today"></span>
-            <span id="day"></span>
-            <span id="date"></span>
-            <span id="month"></span>
-            <span id="year"></span>
+            <div class="today-wrap">
+              <span id="today"></span>
+            </div>
+            <div class="date-wrap">
+              <span id="day"></span>
+              <span id="date"></span>
+              <span id="months"></span>
+              <span id="year"></span>
+            </div>
           </div>
           <div id="weather-box"></div>
         </li>

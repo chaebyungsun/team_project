@@ -1,0 +1,23 @@
+/* ToDo css */
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.form-group {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.form-group input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #dfeaf2;
+  border-radius: 5px;
+}
+
+.form-group input:focus {
+  outline: none;
+}

@@ -1,5 +1,5 @@
 // HTML 요소들을 선택하여 변수에 할당
-const elements = ["date-box", "today", "day", "date", "month", "year"].map(
+const elements = ["date-box", "today", "day", "date", "months", "year"].map(
   (id) => document.getElementById(id)
 )
 // 비구조화 할당으로 각 요소를 개별 변수에 할당
@@ -59,17 +59,17 @@ const getRelativeDateText = (targetDate) => {
   const diffTime = targetDate - now
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
   // 날짜 차이가 0일 경우 "Today," 반환
-  if (diffDays === 0) return "Today,"
+  if (diffDays === 0) return "Today"
   // 날짜 차이가 1일 경우 "Tomorrow," 반환
-  if (diffDays === 1) return "Tomorrow,"
+  if (diffDays === 1) return "Tomorrow"
   // 날짜 차이가 -1일 경우 "Yesterday," 반환
-  if (diffDays === -1) return "Yesterday,"
+  if (diffDays === -1) return "Yesterday"
   // 날짜 차이가 1일보다 큰 경우 "n days later," 반환
   return diffDays > 1
     ? // 날짜 차이가 1일보다 큰 경우 "n days later," 반환
-      `${diffDays} days later,`
+      `${diffDays} days later`
     : // 날짜 차이가 -1일보다 작은 경우 "n days ago," 반환
-      `${Math.abs(diffDays)} days ago,`
+      `${Math.abs(diffDays)} days ago`
 }
 
 // 현재 요일, 일, 월, 년도를 HTML 요소에 설정하고 today 요소 업데이트하는 초기화 함수
