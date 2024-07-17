@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+/* 전체적인 스타일 */
+>>>>>>> develop
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -83,7 +87,10 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+<<<<<<< HEAD
   margin-left: 10px;
+=======
+>>>>>>> develop
 }
 
 .edit-entry:hover {
@@ -107,6 +114,7 @@ h1 {
   background-color: #ff6666;
 }
 
+<<<<<<< HEAD
 /* 확인 버튼 스타일 */
 .view-entry {
   display: inline-block;
@@ -127,6 +135,11 @@ h1 {
 /* 수정 모달 스타일 */
 .modal {
   display: none;
+=======
+/* 모달 스타일 */
+.modal {
+  display: none; /* 기본적으로 숨김처리 */
+>>>>>>> develop
   position: fixed;
   z-index: 1;
   left: 0;
@@ -147,8 +160,12 @@ h1 {
   border-radius: 10px;
 }
 
+<<<<<<< HEAD
 .close-button,
 .close-view-button {
+=======
+.close-button {
+>>>>>>> develop
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -156,9 +173,13 @@ h1 {
 }
 
 .close-button:hover,
+<<<<<<< HEAD
 .close-button:focus,
 .close-view-button:hover,
 .close-view-button:focus {
+=======
+.close-button:focus {
+>>>>>>> develop
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -190,6 +211,7 @@ h1 {
 #save-edit:hover {
   background-color: #357abd;
 }
+<<<<<<< HEAD
 
 /* 확인 모달 스타일 */
 #view-modal .modal-content {
@@ -229,3 +251,5 @@ h1 {
 #cancel-delete:hover {
   background-color: #357abd;
 }
+=======
+>>>>>>> develop
