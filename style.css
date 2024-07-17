@@ -5,12 +5,14 @@ body{
     background-color:#f5f5f5;
 }
 .container{
+    max-width:1520px;
+    width:100%;
     background-color:white;
     margin-top:30px;
     display:flex;
 }
 .inner{
-    max-width:900px;
+    max-width:1100px;
     width:100%;
     margin:0 auto;
 }
@@ -52,6 +54,10 @@ body{
 /* main start */
 main{
     width:80%;
+}
+.main-container{
+    display:flex;
+    justify-content: space-between;
 }
 
 /* header start */
@@ -164,6 +170,7 @@ header .search-bar::placeholder{
 }
 .todo-dash-box ul{
     padding:0;
+    margin-bottom:10px;
 }
 .todo-dash-box ul li img{
     width:30px;
@@ -174,9 +181,28 @@ header .search-bar::placeholder{
     font-weight:bold;
     margin-bottom: 0;
 }
-.todo-dash-box ul li:nth-child(1){
+.todo-dash-box ul li.todo-dash-title{
+    display:flex;
+}
+.todo-dash-box ul li{
     display:flex;
     align-items: center;
+    justify-content: space-between;
+    padding:5px 0;
+}
+.todo-dash-box ul li:nth-child(1){
+
+}
+.todo-dash-box ul li > div{
+    display: flex;
+    align-items: center;
+}
+.todo-dash-box ul li > div div.state-box{
+    width:10px;
+    height:10px;
+    border-radius: 50px;
+    background-color: skyblue;
+    margin:0 5px;
 }
 #month{
     font-size:18px;
@@ -185,3 +211,146 @@ header .search-bar::placeholder{
     margin-bottom:1em;
 }
 /* todo-dash-box end */
+
+/* task-dash-box start */
+.task-dash-box{
+    width:100%;
+    margin-left:50px;
+}
+.task-dash-title{
+    font-size:20px;
+    font-weight:bold;
+    color:#333b69;
+    display:block;
+    margin-bottom:15px;
+}
+
+.task-inputArea{
+    height:50px;
+    text-indent: 10px;
+    width:90%;
+    border:1px solid #dfeaf2;
+    border-radius: 10px;
+    outline:none;
+}
+.task-inputArea::placeholder{
+    color:#8ba3cb;
+}
+.task-inputArea:focus{
+    box-shadow:0 2px 10px 0 rgba(0, 123, 255, 0.2);
+}
+.add-task-box{
+    display:flex;
+    justify-content: space-between;
+    margin-bottom:20px;
+}
+.task-addBtn{
+    height:50px;
+    width:50px;
+    border:none;
+    background-color: #9e78cf;
+    border-radius: 10px;
+    color:white;
+    font-size:20px;
+}
+
+.task-dash-optionBox{
+    width:100%;
+    position:relative;
+    margin-bottom:65px;
+}
+.task-dash-option{
+    border:none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size:14px;
+    padding:5px 7px;
+    position:absolute;
+    right:0;
+    outline: none;
+    /* margin-bottom:50px; */
+}
+
+/* task-dash-cardBox start */
+.task-dash-cardBox{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom:20px;
+}
+.card-titleBox{
+    background-color: #f87777;
+    padding:10px 15px;
+    border-radius: 10px;
+    text-align:center;
+    max-width:140px;
+    width:100%;
+    height:110px;
+}
+.cardTitle{
+    font-weight:bold;
+    display:block;
+    margin-bottom:10px;
+}
+.card-titleNumber{
+    color:white;
+    font-size:30px;
+    font-weight: bold;
+}
+
+.cardContents{
+
+}
+.card-contentBox{
+    max-width:250px;
+    width:100%;
+    display:flex;
+    padding:10px 15px 10px 20px;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+.cardIcon-box{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    
+}
+.contentsTitle{
+    font-weight:bold;
+    display:block;
+}
+.contentsSub{
+    font-size:11px;
+    margin-top: 10px;
+}
+.contentsDeadline{
+    font-size:13px;
+}
+.cardColor-yellow{
+    background-color:#FFE5A5;
+}
+.cardColor-gray{
+    background-color:#F0F0F0
+}
+.cardColor-green{
+    background-color:#C7FFA5
+}
+.cardColor-violet{
+    background-color:#F8A5FF
+}
+.cardColor-skyblue{
+    background-color:#64E4DC
+}
+/* task-dash-cardBox end */
+
+.task-diary-titleBox{
+    display:flex;
+    justify-content: space-between;
+}
+.task-diary-titleBox span{
+    color:#333b69;
+    font-size:14px;
+    font-weight:bold;
+}
+/* task-dash-box end */
