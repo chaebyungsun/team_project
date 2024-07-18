@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>일기장</title>
+    <!-- 통합된 CSS 경로 -->
     <link rel="stylesheet" href="diary.css" />
+    <link rel="stylesheet" href="./assets/styles/reset.css" />
+    <link rel="stylesheet" href="./assets/styles/diary.css" />
   </head>
   <body>
     <div class="container">
@@ -16,7 +19,7 @@
       <button id="add-entry">추가</button>
       <div id="entries"></div>
     </div>
-    <!-- 모달 팝업 -->
+    <!-- 수정 모달 팝업 -->
     <div id="modal" class="modal">
       <div class="modal-content">
         <!-- &times; = x 엔티티코드 -->
@@ -25,6 +28,23 @@
         <button id="save-edit">저장</button>
       </div>
     </div>
+    <!-- 확인 모달 팝업 -->
+    <div id="view-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-view-button">&times;</span>
+        <p id="view-entry-content"></p>
+      </div>
+    </div>
+    <!-- 삭제 확인 모달 팝업 -->
+    <div id="delete-modal" class="modal">
+      <div class="modal-content">
+        <p>일기를 삭제하시겠습니까?</p>
+        <button id="confirm-delete">삭제</button>
+        <button id="cancel-delete">취소</button>
+      </div>
+    </div>
+    <!-- 통합된 JavaScript 경로 -->
     <script src="diary.js"></script>
+    <script src="./assets/js/diary.js"></script>
   </body>
 </html>
