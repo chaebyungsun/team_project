@@ -67,14 +67,25 @@ function addTaskToDOM(task, isCompleted) {
     const taskRow = document.createElement("tr");
     taskRow.setAttribute("data-id", task.id);
     taskRow.innerHTML = `
-        <td><button class="btn btn-link" onclick="toggleFavorite(this)"><i class="fas ${task.favorite ? "fa-heart" : "fa-heart-o"}"></i></button></td>
-        <td class="${task.completed ? "completed" : ""}">${task.text}</td>
-        <td>${task.deadline}</td>
-        <td>${task.category}</td>
-        ${isCompleted ? '<td><button class="btn btn-warning" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="btn btn-warning" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
-        ${isCompleted ? "" : '<td><button class="btn btn-success" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
-        <td><button class="btn btn-danger" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
-      `;
+    <td><button class="btn btn-link" onclick="toggleFavorite(this)"><i class="fas ${task.favorite ? "fa-heart" : "🤍"}"></i></button></td>
+    <td class="${task.completed ? "completed" : ""}">${task.text}</td>
+    <td><span>${task.category}</span></td>
+    <td>${task.deadline}</td>
+    <div class="icon-box">
+    ${isCompleted ? '<td><button class="" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
+    ${isCompleted ? "" : '<td><button class="" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
+    <td><button class="" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
+    </div>
+    `;
+    // taskRow.innerHTML = `
+    //     <td><button class="btn btn-link" onclick="toggleFavorite(this)"><i class="fas ${task.favorite ? "fa-heart" : "fa-heart-o"}"></i></button></td>
+    //     <td class="${task.completed ? "completed" : ""}">${task.text}</td>
+    //     <td>${task.deadline}</td>
+    //     <td>${task.category}</td>
+    //     ${isCompleted ? '<td><button class="btn btn-warning" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="btn btn-warning" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
+    //     ${isCompleted ? "" : '<td><button class="btn btn-success" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
+    //     <td><button class="btn btn-danger" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
+    //   `;
 
     document.getElementById(isCompleted ? "completedTasks" : "pendingTasks").appendChild(taskRow);
 }
