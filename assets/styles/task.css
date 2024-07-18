@@ -1,11 +1,8 @@
-a{text-decoration: none;}
+/* a{text-decoration: none;} */
 /* ToDo css */
 .completed {
   text-decoration: line-through;
   color: gray;
-}
-.nav li{
-  /* color:black; */
 }
 
 .form-group {

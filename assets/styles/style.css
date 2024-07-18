@@ -132,25 +132,29 @@ body {
   color: #b1b1b1;
   position: relative;
 }
+.nav li a{
+  color: #b1b1b1;
+}
 
 .nav li>i {
   margin-right: 5px;
 }
 
-.nav li.active {
+.nav li.active,
+.nav li.active a {
   color: #987aca;
   font-weight: bold;
 }
 
-.nav li:nth-child(2)::before {
+.nav li.active::before {
   content: "";
   position: absolute;
   left: -28px;
   top: 0;
   width: 5px;
   height: 100%;
-  background: blue;
-  border: 1px solid blue;
+  background: #9e78cf;
+  border: 1px solid #9e78cf;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
