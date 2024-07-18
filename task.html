@@ -14,11 +14,88 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./assets/styles/reset.css" />
     <link rel="stylesheet" href="./assets/styles/task.css" />
     <link rel="stylesheet" href="./assets/styles/style.css" />
   </head>
 
   <body>
+    <!-- taskModal start -->
+    <div class="taskModal-wrap">
+      <div class="taskModal">
+        <div class="taskModal-titleBox">
+          <h4 class="task-dash-title">My tasks</h4>
+          <button
+            id="addTask-close-button"
+            class="addTask-close"
+            onclick="addTaskClose()"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="taskModal-contentBox">
+          <span>Content*</span>
+          <input
+            class="task-inputArea"
+            type="text"
+            placeholder="Enter a task"
+          />
+        </div>
+
+        <div class="taskModal-innerBox">
+          <div class="taskModal-categoryBox">
+            <span>Category</span>
+            <ul>
+              <li>All Tasks</li>
+              <li>Favorites</li>
+              <li>Households</li>
+              <li>Work</li>
+              <li>Study</li>
+              <li>Sports</li>
+              <li>etc</li>
+            </ul>
+          </div>
+
+          <div class="taskModal-deadlineBox">
+            <span>Deadline</span>
+            <div class="calendar">
+              <div class="calendar-header">
+                <span id="modal-month-year"></span>
+                <div class="prev-next-box">
+                  <button id="modal-prev" onclick="prevMonth('modal')">
+                    &#10094;
+                  </button>
+                  <button id="modal-next" onclick="nextMonth('modal')">
+                    &#10095;
+                  </button>
+                </div>
+              </div>
+              <div class="calendar-body">
+                <div class="calendar-weekdays">
+                  <div>Mo</div>
+                  <div>Tu</div>
+                  <div>We</div>
+                  <div>Th</div>
+                  <div>Fr</div>
+                  <div>Sa</div>
+                  <div>Su</div>
+                </div>
+                <div class="calendar-days" id="modal-calendar-days"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="taskModal-btnBox">
+          <button onclick="addTaskClose()" class="taskModal-cancel">
+            Cancel
+          </button>
+          <button class="taskModal-confirm">Confirm</button>
+        </div>
+      </div>
+    </div>
+    <!-- taskModal end -->
+
     <div class="container">
       <!-- nav start -->
       <ul class="nav">
@@ -50,7 +127,10 @@
 
         <!-- Add Task Box Start -->
         <div class="form-group">
-          <button class="btn btn-primary add-button" onclick="addTask()">
+          <button
+            class="btn btn-primary add-button task-addBtn"
+            onclick="addTaskOpen()"
+          >
             <i class="fas fa-plus"></i>
           </button>
         </div>
@@ -77,7 +157,7 @@
           <table class="task-table">
             <thead>
               <tr>
-                <th class="table-cell favolite">Favorites</th>
+                <th class="table-cell favorite">Favorites</th>
                 <th class="table-cell content">Content</th>
                 <th class="table-cell category">Category</th>
                 <th class="table-cell deadline">Deadline</th>
@@ -148,8 +228,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="./assets/js/apikey.js"></script>
+    <script src="./assets/js/script.js"></script>
     <script src="./assets/js/task.js"></script>
-    <script src="./assets/js/date.js"></script>
     <script src="./assets/js/weather.js"></script>
   </body>
 </html>
