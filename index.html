@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/styles/reset.css" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- nav start -->
+      <ul class="nav">
+        <li class="active">
+          <i class="fa-solid fa-house"></i>
+          <span>Dashboard</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-list-ul"></i>
+          <span>Task</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-newspaper"></i>
+          <span>Diary</span>
+        </li>
+        <li class="box-wrap">
+          <div id="date-box">
+            <div class="today-wrap">
+              <span id="today"></span>
+            </div>
+            <div class="date-wrap">
+              <span id="day"></span>
+              <span id="date"></span>
+              <span id="months"></span>
+              <span id="year"></span>
+            </div>
+          </div>
+          <div id="weather-box"></div>
+        </li>
+      </ul>
+      <!-- nav end -->
+
+      <!-- main start -->
+      <main class="inner">
+        <!-- header start -->
+        <header>
+          <h1 class="logo">
+            <a href="#">Dashboard</a>
+          </h1>
+          <input
+            class="search-bar"
+            type="search"
+            placeholder="Search for something"
+          />
+        </header>
+        <!-- header end -->
+
+        <div class="main-container">
+          <!-- calender-dash-box start -->
+          <div class="calender-dash-box">
+            <div class="calendar">
+              <div class="calendar-header">
+                <span id="month-year"></span>
+                <div class="prev-next-box">
+                  <button id="prev" onclick="prevMonth()">&#10094;</button>
+                  <button id="next" onclick="nextMonth()">&#10095;</button>
+                </div>
+              </div>
+              <div class="calendar-body">
+                <div class="calendar-weekdays">
+                  <div>Mo</div>
+                  <div>Tu</div>
+                  <div>We</div>
+                  <div>Th</div>
+                  <div>Fr</div>
+                  <div>Sa</div>
+                  <div>Su</div>
+                </div>
+                <div class="calendar-days" id="calendar-days"></div>
+              </div>
+            </div>
+            <div class="todo-dash-box">
+              <span id="month"></span>
+              <ul class="todo-dash-today">
+                <li class="todo-dash-title">
+                  <div>
+                    <img src="./assets/images/calendar.png" alt="달력 아이콘" />
+                    <h3>Today</h3>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <div class="state-box"></div>
+                    <span>Daily Standup</span>
+                  </div>
+                  <span>time</span>
+                </li>
+                <li>
+                  <div>
+                    <div class="state-box"></div>
+                    <span>Budget Review</span>
+                  </div>
+                  <span>time</span>
+                </li>
+                <li>
+                  <div>
+                    <div class="state-box"></div>
+                    <span>Sasha Jay 121</span>
+                  </div>
+                  <span>time</span>
+                </li>
+                <li>
+                  <div>
+                    <div class="state-box"></div>
+                    <span>Web Team Progress Update</span>
+                  </div>
+                  <span>time</span>
+                </li>
+                <li>
+                  <div>
+                    <div class="state-box"></div>
+                    <span>Social team briefing</span>
+                  </div>
+                  <span>time</span>
+                </li>
+              </ul>
+
+              <ul class="todo-dash-tomorrow">
+                <li class="todo-dash-title">
+                  <div>
+                    <img src="./assets/images/calendar.png" alt="달력 아이콘" />
+                    <h3>Tomorrow</h3>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <div class="state-box"></div>
+                    <span>Daily Standup</span>
+                  </div>
+                  <span>time</span>
+                </li>
+                <li>
+                  <div>
+                    <div class="state-box"></div>
+                    <span>Tech Standup</span>
+                  </div>
+                  <span>time</span>
+                </li>
+                <li>
+                  <div>
+                    <div class="state-box"></div>
+                    <span>Developer Progress</span>
+                  </div>
+                  <span>time</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- calender-dash-box end -->
+
+          <!-- task-dash-box start -->
+          <div class="task-dash-box">
+            <h4 class="task-dash-title">My tasks</h4>
+            <!-- add-task-box start -->
+            <div class="add-task-box">
+              <input
+                class="task-inputArea"
+                type="text"
+                placeholder="Enter a task"
+              />
+              <button class="task-addBtn">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <!-- add-task-box end -->
+
+            <div class="task-dash-optionBox">
+              <select class="task-dash-option">
+                <option value="By priority">By priority</option>
+              </select>
+            </div>
+
+            <!-- task-dash-cardBox start -->
+            <div class="task-dash-cardBox">
+              <div class="card-titleBox">
+                <span class="cardTitle">Pending Tasks</span>
+                <p class="card-titleNumber">03</p>
+              </div>
+              <div class="card-contentBox cardColor-gray">
+                <div class="cardContents">
+                  <span class="contentsTitle">To buy a rain coat</span>
+                  <p class="contentsSub">(하위 항목)</p>
+                  <span class="contentsDeadline">Deadline: Sep 8, 2024</span>
+                </div>
+                <div class="cardIcon-box">
+                  <i class="fa-regular fa-circle-check"></i>
+                  <i class="fa-solid fa-pencil"></i>
+                  <i class="fa-regular fa-trash-can"></i>
+                </div>
+              </div>
+              <div class="card-contentBox cardColor-yellow">
+                <div class="cardContents">
+                  <span class="contentsTitle">Scrum Meeting</span>
+                  <p class="contentsSub">(하위 항목)</p>
+                  <span class="contentsDeadline">Deadline: Sep 8, 2024</span>
+                </div>
+                <div class="cardIcon-box">
+                  <i class="fa-regular fa-circle-check"></i>
+                  <i class="fa-solid fa-pencil"></i>
+                  <i class="fa-regular fa-trash-can"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="task-dash-cardBox">
+              <div class="card-titleBox cardColor-skyblue">
+                <span class="cardTitle">Done Tasks</span>
+                <p class="card-titleNumber">01</p>
+              </div>
+              <div class="card-contentBox cardColor-green">
+                <div class="cardContents">
+                  <span class="contentsTitle">To buy a rain coat</span>
+                  <p class="contentsSub">(하위 항목)</p>
+                  <span class="contentsDeadline">Deadline: Sep 8, 2024</span>
+                </div>
+                <div class="cardIcon-box">
+                  <i class="fa-regular fa-circle-check"></i>
+                  <i class="fa-solid fa-pencil"></i>
+                  <i class="fa-regular fa-trash-can"></i>
+                </div>
+              </div>
+              <div class="card-contentBox cardColor-violet">
+                <div class="cardContents">
+                  <span class="contentsTitle">Scrum Meeting</span>
+                  <p class="contentsSub">(하위 항목)</p>
+                  <span class="contentsDeadline">Deadline: Sep 8, 2024</span>
+                </div>
+                <div class="cardIcon-box">
+                  <i class="fa-regular fa-circle-check"></i>
+                  <i class="fa-solid fa-pencil"></i>
+                  <i class="fa-regular fa-trash-can"></i>
+                </div>
+              </div>
+            </div>
+            <!-- task-dash-cardBox end  -->
+
+            <div class="task-diary-titleBox">
+              <h4 class="task-dash-title">My Diary</h4>
+              <span><i class="fa-solid fa-plus"></i> Add Diary</span>
+            </div>
+          </div>
+          <!-- task-dash-box start -->
+        </div>
+      </main>
+      <!-- main end -->
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/10d8588d9a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/apikey.js"></script>
+    <script src="./assets/js/date.js"></script>
+    <script src="./assets/js/weather.js"></script>
+  </body>
+</html>
