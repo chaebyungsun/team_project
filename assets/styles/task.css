@@ -139,7 +139,7 @@ i.fas.fa-edit::before {
   box-shadow: 0px 2px 10px 0px rgba(124, 141, 181, 0.12);
 }
 
-.task-todo .task-table tr td button {
+.task-todo .task-table tr td .fill-button {
   width: 30px;
   height: 30px;
   margin-left: 10px;
@@ -149,7 +149,7 @@ i.fas.fa-edit::before {
   border-radius: 5px;
 }
 
-.task-todo .task-table tr td button:hover {
+.task-todo .task-table tr td .fill-button:hover {
   background-color: #8359ba;
 }
 
