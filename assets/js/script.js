@@ -92,3 +92,17 @@ function addTaskClose() {
     modal.style.display = 'none';
   }, 250);
 }
+
+// dashboard diary table content 글자 수 제한 함수
+document.addEventListener("DOMContentLoaded", () => {
+  const contentElements = document.getElementsByClassName("table-tbody-content");
+
+  Array.from(contentElements).forEach((contentElement) => {
+    if (contentElement) {
+      let contentText = contentElement.innerText;
+      if (contentText.length > 45) {
+        contentElement.innerText = contentText.substring(0, 45) + '...';
+      }
+    }
+  });
+});
