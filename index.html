@@ -177,13 +177,6 @@
                             <li>
                                 <div>
                                     <div class="state-box"></div>
-                                    <span>Web Team Progress Update</span>
-                                </div>
-                                <span>time</span>
-                            </li>
-                            <li>
-                                <div>
-                                    <div class="state-box"></div>
                                     <span>Social team briefing</span>
                                 </div>
                                 <span>time</span>
@@ -225,13 +218,12 @@
 
                 <!-- task-dash-box start -->
                 <div class="task-dash-box">
-                    <h4 class="task-dash-title">My tasks</h4>
+                    
                     <!-- add-task-box start -->
-                    <div class="add-task-box">
-                        <input class="task-inputArea" type="text" placeholder="Enter a task" />
-                        <button class="task-addBtn" onclick="addTaskOpen()">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
+                    
+                    <div class="task-diary-titleBox">
+                        <h4 class="task-dash-title">My Tasks</h4>
+                        <span onclick="addTaskOpen()"class="dash-addBtn"><i class="fa-solid fa-plus"></i> Add Task</span>
                     </div>
                     <!-- add-task-box end -->
 
@@ -308,9 +300,48 @@
 
                     <div class="task-diary-titleBox">
                         <h4 class="task-dash-title">My Diary</h4>
-                        <span><i class="fa-solid fa-plus"></i> Add Diary</span>
+                        <span class="dash-addBtn"><i class="fa-solid fa-plus"></i> Add Diary</span>
                     </div>
-                </div>
+
+                    <div class="dash-diary-tableBox">
+                        <div class="task-dash-optionBox">
+                            <select class="diary-dash-option">
+                                <option value="Weekly">Weekly</option>
+                                <option value="Daliy">Daliy</option>
+                                <option value="Monthly">Monthly</option>
+                            </select>
+                        </div>
+                        <table>
+                            <thead class="table-thead">
+                                <tr>
+                                    <th scope="">content</th>
+                                    <th scope="">Date <i class="fa-solid fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-tbody">
+                                <tr>
+                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면 좋겠다</td>
+                                    <td>July 16, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면 좋겠다</td>
+                                    <td>July 16, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면 좋겠다</td>
+                                    <td>July 16, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면 좋겠다</td>
+                                    <td>July 16, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면 좋겠다</td>
+                                    <td>July 16, 2024</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 <!-- task-dash-box start -->
             </div>
         </main>
