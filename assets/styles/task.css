@@ -1,3 +1,19 @@
+/* Nav Css */
+/* nav 기본 스타일 */
+.nav {
+  z-index: 999;
+  transition: transform 0.3s ease;
+}
+
+.nav .close-menu {
+  color: #b1b1b1;
+  position: absolute;
+  top: -30px;
+  right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 /* Task css */
 .completed {
   text-decoration: line-through;
@@ -5,38 +21,29 @@
 }
 
 .form-group {
+  position: relative;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 0 auto 50px;
 }
 
-.form-group .task-input {
-  width: 90%;
-  border: 1px solid #dfeaf2;
-  height: 50px;
-  text-indent: 10px;
-  border-radius: 10px;
-}
-
-.form-group .task-input::placeholder {
-  color: #8ba3cb;
+.form-group .open-menu {
+  position: absolute;
+  left: 0;
 }
 
 .form-group .add-button {
-  height: 50px;
-  width: 50px;
-  border: none;
-  background-color: #9e78cf;
-  border-radius: 10px;
-  color: white;
-  font-size: 20px;
+  position: absolute;
+  right: 0;
+  color: #000;
+  font-size: 17px;
   cursor: pointer;
+  float: left;
 }
 
 .form-group .add-button:hover {
-  background-color: #8359ba;
+  color: #8359ba;
 }
 
 .task-todo {
@@ -48,6 +55,7 @@
 }
 
 .task-header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -80,12 +88,10 @@
   border-bottom: 1px solid #dfeaf2;
 }
 
-.task-todo .task-table thead tr td,
+.task-todo .task-table thead tr th,
 .task-todo .task-table tr td {
   height: 54px;
-  border-bottom: 1px solid #dfeaf2;
   font-size: 16px;
-  text-align: left;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -93,21 +99,21 @@
 
 .task-todo .task-table thead tr .favorite,
 .task-todo .task-table tr td:nth-child(1) {
-  width: 15%;
+  flex: 0 0 15%;
 }
 
 .task-todo .task-table thead tr .content,
 .task-todo .task-table tr td:nth-child(2) {
-  width: 45%;
+  flex: 0 0 45%;
 }
 .task-todo .task-table thead tr .category,
 .task-todo .task-table tr td:nth-child(3) {
-  width: 15%;
+  flex: 0 0 15%;
 }
 
 .task-todo .task-table thead tr .deadline,
 .task-todo .task-table tr td:nth-child(4) {
-  width: 15%;
+  flex: 0 0 15%;
 }
 
 .task-todo .task-table thead tr .task-complete,
@@ -115,17 +121,20 @@
 .task-todo .task-table thead tr .task-edit,
 .task-todo .task-table tr td:nth-child(6),
 .task-todo .task-table thead tr .task-delete,
-.task-todo .task-table tr td:nth-child(7) {
-  width: 40px;
-  margin-right: 0;
+.task-todo .task-table tr td:nth-child(7),
+.task-todo .task-table tr td:nth-child(8) {
+  flex: 0 0 3.33333%;
 }
 
-i.fas.fa-undo::before,
-i.fas.fa-trash::before,
-i.fas.fa-check::before,
-i.fas.fa-edit::before {
-  width: 30px;
-  height: 30px;
+.task-todo .task-table tr td:nth-child(4) {
+  font-size: 14px;
+}
+
+.task-todo .task-table tr td:nth-child(5) i,
+.task-todo .task-table tr td:nth-child(6) i,
+.task-todo .task-table tr td:nth-child(7) i,
+.task-todo .task-table tr td:nth-child(8) i {
+  font-size: 14px;
 }
 
 .task-todo .task-table tr td:nth-child(3) span {
@@ -140,13 +149,16 @@ i.fas.fa-edit::before {
 }
 
 .task-todo .task-table tr td .fill-button {
-  width: 30px;
-  height: 30px;
-  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
   background-color: #9e78cf;
   color: #fff;
   border: none;
   border-radius: 5px;
+  margin-left: 5px;
 }
 
 .task-todo .task-table tr td .fill-button:hover {
@@ -175,9 +187,290 @@ select {
 }
 
 .task-dash-optionBox {
+  width: 20%;
   position: relative;
+}
+
+.task-dash-optionBox select {
+  display: none;
 }
 
 .select-selected {
   background-color: #fff;
+}
+
+/* 선택 요소 내부의 화살표 디자인 */
+.select-selected::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #000 transparent transparent transparent;
+}
+
+/* 선택 상자가 열려있는 경우 화살표 디자인 */
+.select-selected.select-arrow-active::after {
+  top: 7px;
+  border-color: transparent transparent #000 transparent;
+}
+
+/* 옵션 커스터마이징 선택된 항목도 포함 */
+.select-items div,
+.select-selected {
+  color: #000;
+  padding: 8px 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items,
+.select-selected {
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px 7px;
+  position: absolute;
+  background-color: #fff;
+  outline: none;
+  z-index: 99;
+  overflow: auto;
+  width: 120px;
+  max-width: 120px;
+  right: 0; /* 오른쪽 끝에 위치하도록 설정 */
+  left: auto; /* 왼쪽 설정 해제 */
+}
+
+/* 선택상자 닫혔을 때 항목 숨김 */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.054);
+}
+
+/** 1200px 이한 경우*/
+@media screen and (max-width: 1200px) {
+  .task-todo .task-table tr td .fill-button {
+    width: 20px;
+    height: 20px;
+  }
+
+  .task-todo .task-table tr td:nth-child(5) i,
+  .task-todo .task-table tr td:nth-child(6) i,
+  .task-todo .task-table tr td:nth-child(7) i,
+  .task-todo .task-table tr td:nth-child(8) i {
+    font-size: 10px;
+  }
+}
+
+/** 타블렛 1023px 이하인 경우 */
+@media screen and (max-width: 1023px) {
+  .task-title {
+    font-size: 20px;
+  }
+
+  .task-todo .task-table thead tr th,
+  .task-todo .task-table tr td {
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .task-todo .task-table tr td:nth-child(4) {
+    font-size: 12px;
+  }
+
+  .task-todo .task-table tr td .fill-button {
+    width: 18px;
+    height: 18px;
+  }
+
+  .task-todo .task-table tr td:nth-child(5) i,
+  .task-todo .task-table tr td:nth-child(6) i,
+  .task-todo .task-table tr td:nth-child(7) i,
+  .task-todo .task-table tr td:nth-child(8) i {
+    font-size: 10px;
+  }
+
+  .task-todo .task-table tr td:nth-child(3) span {
+    width: 60px;
+    height: 25px;
+    font-size: 10px;
+  }
+}
+
+/* 890px 이하인 경우 */
+@media screen and (max-width: 900px) {
+  .task-todo .task-table tr td .fill-button {
+    width: 15px;
+    height: 15px;
+  }
+
+  .task-todo .task-table tr td:nth-child(5) i,
+  .task-todo .task-table tr td:nth-child(6) i,
+  .task-todo .task-table tr td:nth-child(7) i,
+  .task-todo .task-table tr td:nth-child(8) i {
+    font-size: 8px;
+  }
+
+  .form-group .add-button {
+    font-size: 15px;
+  }
+}
+
+/** 모바일 767px 이하인 경우 */
+@media screen and (max-width: 767px) {
+  /* nav 기본 숨김 */
+  .nav.mobile {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 20%;
+    height: 100%;
+    background-color: #fff;
+    transition: left 0.3s ease;
+    z-index: 999;
+    overflow: auto; /* 스크롤 가능하게 */
+  }
+
+  /* nav 보임 */
+  .nav.open {
+    left: 0;
+  }
+
+  .task-title {
+    font-size: 18px;
+  }
+
+  .task-todo .task-table thead tr th,
+  .task-todo .task-table tr td {
+    height: 25px;
+  }
+
+  .task-todo .task-table tr td .fill-button {
+    width: 15px;
+    height: 15px;
+  }
+
+  .task-todo .task-table tr td:nth-child(4) {
+    font-size: 10px;
+  }
+
+  .task-todo .task-table tr td:nth-child(5) i,
+  .task-todo .task-table tr td:nth-child(6) i,
+  .task-todo .task-table tr td:nth-child(7) i,
+  .task-todo .task-table tr td:nth-child(8) i {
+    font-size: 10px;
+  }
+}
+
+/* 623px 이하인 경우 */
+@media screen and (max-width: 623px) {
+  .form-group .add-button {
+    font-size: 13px;
+  }
+
+  .task-todo .task-table tr td .fill-button {
+    width: 12px;
+    height: 12px;
+  }
+
+  .task-todo .task-table tr td:nth-child(4) {
+    font-size: 6px;
+  }
+
+  .task-todo .task-table tr td:nth-child(5) i,
+  .task-todo .task-table tr td:nth-child(6) i,
+  .task-todo .task-table tr td:nth-child(7) i,
+  .task-todo .task-table tr td:nth-child(8) i {
+    font-size: 8px;
+  }
+  .task-todo .task-table thead tr .category,
+  .task-todo .task-table tr td:nth-child(3) {
+    display: none;
+  }
+
+  .task-todo .task-table thead tr .favorite,
+  .task-todo .task-table tr td:nth-child(1) {
+    flex: 0 0 20%;
+  }
+
+  .task-todo .task-table thead tr .content,
+  .task-todo .task-table tr td:nth-child(2) {
+    flex: 0 0 45%;
+  }
+
+  .task-todo .task-table thead tr .deadline,
+  .task-todo .task-table tr td:nth-child(4) {
+    flex: 0 0 20%;
+  }
+
+  .task-todo .task-table thead tr .task-complete,
+  .task-todo .task-table tr td:nth-child(5),
+  .task-todo .task-table thead tr .task-edit,
+  .task-todo .task-table tr td:nth-child(6),
+  .task-todo .task-table thead tr .task-delete,
+  .task-todo .task-table tr td:nth-child(7),
+  .task-todo .task-table tr td:nth-child(8) {
+    flex: 0 0 5%;
+  }
+
+  .task-todo .task-table tr td:nth-child(4) {
+    font-size: 10px;
+  }
+
+  .task-todo .task-table tr td .fill-button {
+    width: 15px;
+    height: 15px;
+    margin-left: 3px;
+  }
+
+  .task-todo .task-table tr td:nth-child(5) i,
+  .task-todo .task-table tr td:nth-child(6) i,
+  .task-todo .task-table tr td:nth-child(7) i,
+  .task-todo .task-table tr td:nth-child(8) i {
+    font-size: 10px;
+  }
+}
+
+/* 550px 이하인 경우 */
+@media screen and (max-width: 550px) {
+  .task-title {
+    font-size: 18px;
+  }
+
+  .task-todo .task-table thead tr th,
+  .task-todo .task-table tr td {
+    font-size: 12px;
+  }
+
+  .task-todo .task-table thead tr .category,
+  .task-todo .task-table tr td:nth-child(3) {
+    display: none;
+  }
+}
+
+/* 375px 이하인 경우 */
+@media screen and (max-width: 375px) {
+  .task-title {
+    font-size: 16px;
+  }
+
+  .task-todo .task-table thead tr th,
+  .task-todo .task-table tr td {
+    font-size: 10px;
+  }
+
+  .task-todo .task-table tr td .fill-button {
+    width: 15px;
+    height: 15px;
+    margin-left: 3px;
+  }
 }

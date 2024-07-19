@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./assets/styles/reset.css" />
     <link rel="stylesheet" href="./assets/styles/task.css" />
     <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link rel="stylesheet" href="./assets/styles/weather.css" />
   </head>
 
   <body>
@@ -35,62 +36,31 @@
         </div>
 
         <div class="taskModal-contentBox">
-          <span>Content*</span>
+          <span>Task*</span>
           <input
             class="task-inputArea"
             type="text"
             placeholder="Enter a task"
+            id="task"
           />
+          <span>Deadline*</span>
+          <input class="task-inputArea" type="datetime-local" id="deadline" />
+          <span>Category*</span>
+          <select class="task-inputArea" id="category">
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+            <option value="Study">Study</option>
+            <option value="Others">Others</option>
+          </select>
         </div>
 
-        <div class="taskModal-innerBox">
-          <div class="taskModal-categoryBox">
-            <span>Category</span>
-            <ul>
-              <li>All Tasks</li>
-              <li>Favorites</li>
-              <li>Households</li>
-              <li>Work</li>
-              <li>Study</li>
-              <li>Sports</li>
-              <li>etc</li>
-            </ul>
-          </div>
-
-          <div class="taskModal-deadlineBox">
-            <span>Deadline</span>
-            <div class="calendar">
-              <div class="calendar-header">
-                <span id="modal-month-year"></span>
-                <div class="prev-next-box">
-                  <button id="modal-prev" onclick="prevMonth('modal')">
-                    &#10094;
-                  </button>
-                  <button id="modal-next" onclick="nextMonth('modal')">
-                    &#10095;
-                  </button>
-                </div>
-              </div>
-              <div class="calendar-body">
-                <div class="calendar-weekdays">
-                  <div>Mo</div>
-                  <div>Tu</div>
-                  <div>We</div>
-                  <div>Th</div>
-                  <div>Fr</div>
-                  <div>Sa</div>
-                  <div>Su</div>
-                </div>
-                <div class="calendar-days" id="modal-calendar-days"></div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="taskModal-btnBox">
           <button onclick="addTaskClose()" class="taskModal-cancel">
             Cancel
           </button>
-          <button class="taskModal-confirm">Confirm</button>
+          <button class="taskModal-confirm" onclick="confirmTask()">
+            Confirm
+          </button>
         </div>
       </div>
     </div>
@@ -98,7 +68,13 @@
 
     <div class="container">
       <!-- nav start -->
-      <ul class="nav">
+      <ul class="nav mobile">
+        <li>
+          <!-- 닫기 버튼 -->
+          <button class="close-menu hide">
+            <i class="fas fa-times"></i>
+          </button>
+        </li>
         <li>
           <i class="fa-solid fa-house"></i>
           <span><a href="./index.html">Dashboard</a></span>
@@ -127,11 +103,13 @@
 
         <!-- Add Task Box Start -->
         <div class="form-group">
+          <button class="open-menu hide">
+            <i class="fas fa-bars"></i>
           <button
-            class="btn btn-primary add-button task-addBtn"
+            class="add-button"
             onclick="addTaskOpen()"
           >
-            <i class="fas fa-plus"></i>
+            + Add Task
           </button>
         </div>
         <!-- Add Task Box end -->
@@ -142,12 +120,12 @@
           <div class="task-header">
             <h3 class="task-title">Pending Tasks -</h3>
             <div class="task-dash-optionBox">
-              <select class="task-dash-option">
-                <option value="0">Category</option>
-                <option value="1">Favorite</option>
-                <option value="2">Daily</option>
-                <option value="3">Weekly</option>
-                <option value="4">Monthly</option>
+              <select class="task-dash-option" id="filter">
+                <option value="">All</option>
+                <option value="Favorite">Favorite</option>
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
               </select>
             </div>
           </div>
@@ -181,12 +159,12 @@
           <div class="task-header">
             <h3 class="task-title">Complete Tasks -</h3>
             <div class="task-dash-optionBox">
-              <select class="task-dash-option">
-                <option value="0">Category</option>
-                <option value="1">Favorite</option>
-                <option value="2">Daily</option>
-                <option value="3">Weekly</option>
-                <option value="4">Monthly</option>
+              <select class="task-dash-option" id="filter">
+                <option value="">All</option>
+                <option value="Favorite">Favorite</option>
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
               </select>
             </div>
           </div>
@@ -231,5 +209,7 @@
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/task.js"></script>
     <script src="./assets/js/weather.js"></script>
+    <script src="./assets/js/dropdown.js"></script>
+    <script src="./assets/js/menuopen.js"></script>
   </body>
 </html>
