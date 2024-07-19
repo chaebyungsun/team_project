@@ -50,10 +50,6 @@ const loadEntries = () => {
     const buttonBox = document.createElement("div"); // 버튼을 감싸는 div 요소 생성
     buttonBox.classList.add("button-box");
 
-    const viewButton = document.createElement("button"); // 확인 버튼 생성
-    viewButton.textContent = "check";
-    viewButton.classList.add("view-entry");
-
     const editButton = document.createElement("button"); // 수정 버튼 생성
     editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
     editButton.classList.add("edit-entry");
@@ -68,7 +64,6 @@ const loadEntries = () => {
     entryDiv.appendChild(entryContent); // 일기 내용 추가
     entryDiv.appendChild(buttonBox); // 버튼을 감싸는 div 추가
 
-    buttonBox.appendChild(viewButton); // 확인 버튼을 buttonBox에 추가
     buttonBox.appendChild(editButton); // 수정 버튼을 buttonBox에 추가
     buttonBox.appendChild(deleteButton); // 삭제 버튼을 buttonBox에 추가
 
@@ -87,10 +82,15 @@ const loadEntries = () => {
       modal.style.display = "block"; // 수정 모달 표시
     });
 
-    // 확인 버튼 클릭 시 확인 모달 표시
-    viewButton.addEventListener("click", () => {
+    // 일기 내용 클릭 시 확인 모달 표시
+    entryContent.addEventListener("click", () => {
       viewEntryContent.textContent = entryContent.textContent; // 확인 모달에 일기 내용 설정
       viewModal.style.display = "block"; // 확인 모달 표시
+
+      // 추가된 일기 항목에 애니메이션 클래스 적용
+      setTimeout(() => {
+        entryDiv.classList.add("show");
+      }, 100);
     });
   });
 };
@@ -134,10 +134,6 @@ const addEntry = () => {
   const buttonBox = document.createElement("div"); // 버튼을 감싸는 div 요소 생성
   buttonBox.classList.add("button-box");
 
-  const viewButton = document.createElement("button"); // 확인 버튼 생성
-  viewButton.textContent = "check";
-  viewButton.classList.add("view-entry");
-
   const editButton = document.createElement("button"); // 수정 버튼 생성
   editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
   editButton.classList.add("edit-entry");
@@ -152,7 +148,6 @@ const addEntry = () => {
   entryDiv.appendChild(entryContent); // 일기 내용 추가
   entryDiv.appendChild(buttonBox); // 버튼을 감싸는 div 추가
 
-  buttonBox.appendChild(viewButton); // 확인 버튼을 buttonBox에 추가
   buttonBox.appendChild(editButton); // 수정 버튼을 buttonBox에 추가
   buttonBox.appendChild(deleteButton); // 삭제 버튼을 buttonBox에 추가
 
@@ -175,10 +170,15 @@ const addEntry = () => {
   });
 
   // 확인 버튼 클릭 시 확인 모달 표시
-  viewButton.addEventListener("click", () => {
+  entryContent.addEventListener("click", () => {
     viewEntryContent.textContent = entryContent.textContent; // 확인 모달에 일기 내용 설정
     viewModal.style.display = "block"; // 확인 모달 표시
   });
+
+  // 추가된 일기 항목에 애니메이션 클래스 적용
+  setTimeout(() => {
+    entryDiv.classList.add("show");
+  }, 100);
 
   saveEntries(); // 일기 추가 후 로컬 스토리지에 저장
 };

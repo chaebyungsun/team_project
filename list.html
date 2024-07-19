@@ -53,21 +53,22 @@
               <i class="fa-solid fa-plus" aria-hidden="true"></i>
             </button>
           </div>
-          <div id="entries"></div>
+          <!-- 일기 추가 리스트 -->
+          <div id="entries" class="entries-grid"></div>
           <!-- 수정 모달 팝업 -->
           <div id="modal" class="modal">
             <div class="modal-content">
               <!-- &times; = x 엔티티코드 -->
               <span class="close-button">&times;</span>
               <textarea id="edit-entry-textarea"></textarea>
-              <button id="save-edit">저장</button>
+              <button id="save-edit">Save</button>
             </div>
           </div>
           <!-- 확인 모달 팝업 -->
           <div id="view-modal" class="modal">
             <div class="modal-content">
               <span class="close-view-button">&times;</span>
-              <p id="view-entry-content"></p>
+              <textarea id="view-entry-content"></textarea>
             </div>
           </div>
           <!-- 삭제 확인 모달 팝업 -->
