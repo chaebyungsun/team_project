@@ -11,6 +11,9 @@
 
 document.addEventListener("DOMContentLoaded", loadTasks);
 
+let isEditing = false; // 편집 모드 플래그
+let editingTaskId = null; // 편집 중인 태스크 ID
+
 function loadTasks() {
     const pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
     const completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
@@ -74,39 +77,17 @@ function addTaskToDOM(task, isCompleted) {
     </td>
     <td class="${task.completed ? "completed" : ""}">${task.text}</td>
     <td><span>${task.category}</span></td>
-    <td>${task.deadline}</td>
+    <td>${moment(task.deadline).format("YY.MM.DD HH:mm")}</td>
     <div class="icon-box">
     ${isCompleted ? '<td><button class="fill-button" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="fill-button" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
     ${isCompleted ? "" : '<td><button class="fill-button" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
     <td><button class="fill-button" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
     </div>
     `;
-    // taskRow.innerHTML = `
-    //     <td><button class="btn btn-link" onclick="toggleFavorite(this)"><i class="fas ${task.favorite ? "fa-heart" : "fa-heart-o"}"></i></button></td>
-    //     <td class="${task.completed ? "completed" : ""}">${task.text}</td>
-    //     <td>${task.deadline}</td>
-    //     <td>${task.category}</td>
-    //     ${isCompleted ? '<td><button class="btn btn-warning" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="btn btn-warning" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
-    //     ${isCompleted ? "" : '<td><button class="btn btn-success" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
-    //     <td><button class="btn btn-danger" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
-    //   `;
 
     document.getElementById(isCompleted ? "completedTasks" : "pendingTasks").appendChild(taskRow);
 }
 
-// function editTask(button) {
-//     const row = button.parentElement.parentElement;
-//     const taskId = row.getAttribute("data-id");
-//     const taskText = row.children[1].innerText;
-//     const taskDeadline = row.children[2].innerText;
-//     const taskCategory = row.children[3].innerText;
-
-//     document.getElementById("task").value = taskText;
-//     document.getElementById("deadline").value = taskDeadline;
-//     document.getElementById("category").value = taskCategory;
-
-//     deleteTask(button, false);
-// }
 function editTask(button) {
     const row = button.parentElement.parentElement;
     const taskId = row.getAttribute("data-id");
@@ -121,10 +102,39 @@ function editTask(button) {
         document.getElementById("category").value = task.category;
         isEditing = true;
         editingTaskId = taskId;
+
         addTaskOpen();
     }
 }
+function updateTaskInLocalStorage(updatedTask) {
+    let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+    let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
 
+    console.log("Updated Task ID:", updatedTask.id);
+    pendingTasks.forEach((task) => console.log("Pending Task ID:", task.id));
+    completedTasks.forEach((task) => console.log("Completed Task ID:", task.id));
+
+    // pendingTasks 배열에서 해당 task를 찾고 업데이트
+    const pendingTaskIndex = pendingTasks.findIndex((task) => task.id == updatedTask.id);
+    console.log("pendingTaskIndex", pendingTaskIndex);
+    if (pendingTaskIndex > -1) {
+        pendingTasks[pendingTaskIndex] = updatedTask;
+    } else {
+        // completedTasks 배열에서 해당 task를 찾고 업데이트
+        const completedTaskIndex = completedTasks.findIndex((task) => task.id == updatedTask.id);
+        if (completedTaskIndex > -1) {
+            completedTasks[completedTaskIndex] = updatedTask;
+        }
+    }
+
+    // 수정된 배열을 로컬 스토리지에 저장
+    localStorage.setItem("pendingTasks", JSON.stringify(pendingTasks));
+    localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
+
+    // DOM을 다시 로드하여 변경 사항 반영
+    location.reload(true);
+    //loadTasks();
+}
 function completeTask(button) {
     const row = button.parentElement.parentElement;
     const taskId = row.getAttribute("data-id");
@@ -225,9 +235,40 @@ function addTaskClose() {
     setTimeout(() => {
         modal.style.display = "none";
     }, 250);
+
+    // 모달을 닫을 때 입력 필드를 초기화
+    document.getElementById("task").value = "";
+    document.getElementById("deadline").value = "";
+    document.getElementById("category").value = "Personal";
+    isEditing = false;
+    editingTaskId = null;
 }
 
 function confirmTask() {
-    addTask();
+    if (isEditing) {
+        const updatedTask = {
+            id: editingTaskId,
+            text: document.getElementById("task").value,
+            deadline: document.getElementById("deadline").value,
+            dateAdded: new Date().toLocaleDateString(),
+            category: document.getElementById("category").value,
+            completed: false, // 여기가 문제가 될 수 있음. 실제 태스크의 완료 상태를 유지하도록 수정 필요
+            favorite: false, // 여기도 문제가 될 수 있음. 실제 태스크의 즐겨찾기 상태를 유지하도록 수정 필요
+        };
+
+        // 기존 태스크의 completed 및 favorite 상태를 유지하도록 수정
+        let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+        let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
+        let task = pendingTasks.find((task) => task.id == editingTaskId) || completedTasks.find((task) => task.id == editingTaskId);
+
+        if (task) {
+            updatedTask.completed = task.completed;
+            updatedTask.favorite = task.favorite;
+        }
+
+        updateTaskInLocalStorage(updatedTask);
+    } else {
+        addTask();
+    }
     addTaskClose();
 }
