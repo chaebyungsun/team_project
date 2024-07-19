@@ -14,6 +14,11 @@
   cursor: pointer;
 }
 
+/* Task Modal */
+.taskModal-wrap {
+  z-index: 99999999;
+}
+
 /* Task css */
 .completed {
   text-decoration: line-through;
@@ -326,7 +331,7 @@ select {
 }
 
 /** 모바일 767px 이하인 경우 */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   /* nav 기본 숨김 */
   .nav.mobile {
     position: fixed;
