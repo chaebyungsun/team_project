@@ -1,7 +1,6 @@
 /* Nav Css */
 /* nav 기본 스타일 */
 .nav {
-  width: 40% !important;
   z-index: 999;
   transition: transform 0.3s ease;
 }
