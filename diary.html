@@ -18,7 +18,15 @@
   </head>
   <body>
     <div class="container">
+      <div class="pl"></div>
+      <div class="overlay"></div>
       <ul class="nav mobile">
+        <li>
+          <!-- 닫기 버튼 -->
+          <button onclick="overlayClose()" class="close-menu hide">
+            <i class="fas fa-times"></i>
+          </button>
+        </li>
         <li>
           <i class="fa-solid fa-house"></i>
           <span><a href="./index.html">Dashboard</a></span>
@@ -34,7 +42,7 @@
       </ul>
       <main class="inner">
         <header>
-          <button class="open-menu hide">
+          <button onclick="overlayOpen()" id="overlay-open" class="open-menu hide">
             <i class="fas fa-bars"></i>
           </button>
           <h1 class="logo">
@@ -89,6 +97,7 @@
       </main>
     </div>
     <!-- 통합된 JavaScript 경로 -->
+    <script src="./assets/js/script.js"></script>
     <script src="./assets/js/apikey.js"></script>
     <script src="./assets/js/diary.js"></script>
     <script src="./assets/js/weather.js"></script>

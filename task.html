@@ -68,11 +68,13 @@
     <!-- taskModal end -->
 
     <div class="container">
+      <div class="pl"></div>
       <!-- nav start -->
+       <div class="overlay"></div>
       <ul class="nav mobile">
         <li>
           <!-- 닫기 버튼 -->
-          <button class="close-menu hide">
+          <button onclick="overlayClose()" class="close-menu hide">
             <i class="fas fa-times"></i>
           </button>
         </li>
@@ -95,7 +97,7 @@
       <main role="main" class="inner">
         <!-- header start -->
         <header>
-          <button class="open-menu hide">
+          <button onclick="overlayOpen()" class="open-menu hide">
             <i class="fas fa-bars"></i>
           </button>
           <h1 class="logo">
