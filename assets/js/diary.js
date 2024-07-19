@@ -168,6 +168,11 @@ const addEntry = () => {
   saveEntries(); // 일기 추가 후 로컬 스토리지에 저장
 };
 
+addEntryButton.addEventListener("click", () => {
+  addEntry();
+  window.location.hash = "#list"; // 라우팅 변경
+});
+
 // 추가 버튼 클릭 시 addEntry 함수 실행
 addEntryButton.addEventListener("click", addEntry);
 
@@ -206,4 +211,33 @@ cancelDeleteButton.addEventListener("click", () => {
 });
 
 // 페이지 로드 시 로컬 스토리지에서 일기 목록 불러오기
-window.addEventListener("load", loadEntries);
+const showDiaryEntryPage = () => {
+  document.querySelector("article").style.display = "block";
+  document.querySelector("textarea#diary-entry").style.display = "block";
+  document.querySelector("#add-entry").style.display = "block";
+  entriesDiv.style.display = "none";
+};
+
+const showDiaryListPage = () => {
+  document.querySelector("article").style.display = "none";
+  document.querySelector("textarea#diary-entry").style.display = "none";
+  document.querySelector("#add-entry").style.display = "none";
+  entriesDiv.style.display = "block";
+  loadEntries();
+};
+
+window.addEventListener("load", () => {
+  if (window.location.hash === "#list") {
+    showDiaryListPage();
+  } else {
+    showDiaryEntryPage();
+  }
+});
+
+window.addEventListener("hashchange", () => {
+  if (window.location.hash === "#list") {
+    showDiaryListPage();
+  } else {
+    showDiaryEntryPage();
+  }
+});
