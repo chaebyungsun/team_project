@@ -6,7 +6,11 @@
     <title>diary</title>
     <!-- 통합된 CSS 경로 -->
     <link rel="stylesheet" href="./assets/styles/reset.css" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
     <link rel="stylesheet" href="./assets/styles/diary.css" />
+    <link rel="stylesheet" href="./assets/styles/weather.css" />
+    <link rel="stylesheet" href="./assets/styles/responsive.css" />
+
     <script
       src="https://kit.fontawesome.com/ace988cf56.js"
       crossorigin="anonymous"
@@ -14,39 +18,29 @@
   </head>
   <body>
     <div class="container">
-      <ul class="nav">
-        <li class="active">
+      <ul class="nav mobile">
+        <li>
           <i class="fa-solid fa-house"></i>
-          <span>Dashboard</span>
+          <span><a href="./index.html">Dashboard</a></span>
         </li>
         <li>
           <i class="fa-solid fa-list-ul"></i>
-          <span>Task</span>
+          <span><a href="./task.html">Task</a></span>
         </li>
-        <li>
+        <li class="active">
           <i class="fa-solid fa-newspaper"></i>
-          <span>Diary</span>
-        </li>
-        <li class="box-wrap">
-          <div id="date-box">
-            <div class="today-wrap">
-              <span id="today"></span>
-            </div>
-            <div class="date-wrap">
-              <span id="day"></span>
-              <span id="date"></span>
-              <span id="months"></span>
-              <span id="year"></span>
-            </div>
-          </div>
-          <div id="weather-box"></div>
+          <span><a href="./diary.html">Diary</a></span>
         </li>
       </ul>
       <main class="inner">
         <header>
+          <button class="open-menu hide">
+            <i class="fas fa-bars"></i>
+          </button>
           <h1 class="logo">
             <a href="#">Diary</a>
           </h1>
+          <div id="weather-box"></div>
         </header>
         <article>
           <div class="tittle">
@@ -95,6 +89,9 @@
       </main>
     </div>
     <!-- 통합된 JavaScript 경로 -->
+    <script src="./assets/js/apikey.js"></script>
     <script src="./assets/js/diary.js"></script>
+    <script src="./assets/js/weather.js"></script>
+    <script src="./assets/js/menuopen.js"></script>
   </body>
 </html>

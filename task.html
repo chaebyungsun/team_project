@@ -15,9 +15,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/styles/reset.css" />
-    <link rel="stylesheet" href="./assets/styles/task.css" />
     <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link rel="stylesheet" href="./assets/styles/task.css" />
     <link rel="stylesheet" href="./assets/styles/weather.css" />
+    <link rel="stylesheet" href="./assets/styles/responsive.css" />
   </head>
 
   <body>
@@ -94,6 +95,9 @@
       <main role="main" class="inner">
         <!-- header start -->
         <header>
+          <button class="open-menu hide">
+            <i class="fas fa-bars"></i>
+          </button>
           <h1 class="logo">
             <a href="#">Tasks</a>
           </h1>
@@ -103,14 +107,7 @@
 
         <!-- Add Task Box Start -->
         <div class="form-group">
-          <button class="open-menu hide">
-            <i class="fas fa-bars"></i>
-          <button
-            class="add-button"
-            onclick="addTaskOpen()"
-          >
-            + Add Task
-          </button>
+          <button class="add-button" onclick="addTaskOpen()">+ Add Task</button>
         </div>
         <!-- Add Task Box end -->
 

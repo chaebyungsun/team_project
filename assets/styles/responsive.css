@@ -1,0 +1,51 @@
+.nav {
+  z-index: 999;
+  transition: transform 0.3s ease;
+}
+
+.nav .close-menu {
+  color: #b1b1b1;
+  position: absolute;
+  top: -30px;
+  right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.form-group {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 auto 50px;
+}
+
+.form-group .open-menu {
+  position: absolute;
+  left: 0;
+}
+
+/* 768px 이하인 경우 */
+@media screen and (max-width: 768px) {
+  /* nav 기본 숨김 */
+  .nav.mobile {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 20%;
+    height: 100%;
+    background-color: #fff;
+    transition: left 0.3s ease;
+    z-index: 999;
+    overflow: auto; /* 스크롤 가능하게 */
+  }
+
+  /* nav 보임 */
+  .nav.open {
+    left: 0;
+  }
+
+  .task-title {
+    font-size: 18px;
+  }
+}
