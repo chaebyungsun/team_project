@@ -9,65 +9,64 @@
 	•	deleteTask: 적절한 섹션에서 태스크를 삭제하고 필요 시 “등록된 데이터가 없습니다” 메시지를 표시합니다.
  */
 
-document.addEventListener("DOMContentLoaded", loadTasks)
+document.addEventListener("DOMContentLoaded", loadTasks);
 
 function loadTasks() {
-  const pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || []
-  const completedTasks =
-    JSON.parse(localStorage.getItem("completedTasks")) || []
+    const pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+    const completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
 
-  if (pendingTasks.length === 0) {
-    document.getElementById("noPendingTasks").style.display = "table-row"
-  } else {
-    document.getElementById("noPendingTasks").style.display = "none"
-    pendingTasks.forEach((task) => addTaskToDOM(task, false))
-  }
+    if (pendingTasks.length === 0) {
+        document.getElementById("noPendingTasks").style.display = "table-row";
+    } else {
+        document.getElementById("noPendingTasks").style.display = "none";
+        pendingTasks.forEach((task) => addTaskToDOM(task, false));
+    }
 
-  if (completedTasks.length === 0) {
-    document.getElementById("noCompletedTasks").style.display = "table-row"
-  } else {
-    document.getElementById("noCompletedTasks").style.display = "none"
-    completedTasks.forEach((task) => addTaskToDOM(task, true))
-  }
+    if (completedTasks.length === 0) {
+        document.getElementById("noCompletedTasks").style.display = "table-row";
+    } else {
+        document.getElementById("noCompletedTasks").style.display = "none";
+        completedTasks.forEach((task) => addTaskToDOM(task, true));
+    }
 }
 
 function addTask() {
-  const taskInput = document.getElementById("task")
-  const deadlineInput = document.getElementById("deadline")
-  const categoryInput = document.getElementById("category")
+    const taskInput = document.getElementById("task");
+    const deadlineInput = document.getElementById("deadline");
+    const categoryInput = document.getElementById("category");
 
-  if (taskInput.value === "" || deadlineInput.value === "") {
-    alert("Please enter a task, deadline, and category.")
-    return
-  }
+    if (taskInput.value === "" || deadlineInput.value === "") {
+        alert("Please enter a task, deadline, and category.");
+        return;
+    }
 
-  const task = {
-    id: Date.now(),
-    text: taskInput.value,
-    deadline: deadlineInput.value,
-    dateAdded: new Date().toLocaleDateString(),
-    category: categoryInput.value,
-    completed: false,
-    favorite: false,
-  }
+    const task = {
+        id: Date.now(),
+        text: taskInput.value,
+        deadline: deadlineInput.value,
+        dateAdded: new Date().toLocaleDateString(),
+        category: categoryInput.value,
+        completed: false,
+        favorite: false,
+    };
 
-  addTaskToDOM(task, false)
+    addTaskToDOM(task, false);
 
-  const pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || []
-  pendingTasks.push(task)
-  localStorage.setItem("pendingTasks", JSON.stringify(pendingTasks))
+    const pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+    pendingTasks.push(task);
+    localStorage.setItem("pendingTasks", JSON.stringify(pendingTasks));
 
-  taskInput.value = ""
-  deadlineInput.value = ""
-  categoryInput.value = "Personal"
+    taskInput.value = "";
+    deadlineInput.value = "";
+    categoryInput.value = "Personal";
 
-  document.getElementById("noPendingTasks").style.display = "none"
+    document.getElementById("noPendingTasks").style.display = "none";
 }
 
 function addTaskToDOM(task, isCompleted) {
-  const taskRow = document.createElement("tr")
-  taskRow.setAttribute("data-id", task.id)
-  taskRow.innerHTML = `
+    const taskRow = document.createElement("tr");
+    taskRow.setAttribute("data-id", task.id);
+    taskRow.innerHTML = `
     <td>
       <button class="favorite-button" onclick="toggleFavorite(this)">
        ${task.favorite ? "🩷" : "🤍"}
@@ -77,139 +76,158 @@ function addTaskToDOM(task, isCompleted) {
     <td><span>${task.category}</span></td>
     <td>${task.deadline}</td>
     <div class="icon-box">
-    ${
-      isCompleted
-        ? '<td><button class="fill-button" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>'
-        : '<td><button class="fill-button" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'
-    }
-    ${
-      isCompleted
-        ? ""
-        : '<td><button class="fill-button" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'
-    }
+    ${isCompleted ? '<td><button class="fill-button" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="fill-button" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
+    ${isCompleted ? "" : '<td><button class="fill-button" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
     <td><button class="fill-button" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
     </div>
-    `
-  // taskRow.innerHTML = `
-  //     <td><button class="btn btn-link" onclick="toggleFavorite(this)"><i class="fas ${task.favorite ? "fa-heart" : "fa-heart-o"}"></i></button></td>
-  //     <td class="${task.completed ? "completed" : ""}">${task.text}</td>
-  //     <td>${task.deadline}</td>
-  //     <td>${task.category}</td>
-  //     ${isCompleted ? '<td><button class="btn btn-warning" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="btn btn-warning" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
-  //     ${isCompleted ? "" : '<td><button class="btn btn-success" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
-  //     <td><button class="btn btn-danger" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
-  //   `;
+    `;
+    // taskRow.innerHTML = `
+    //     <td><button class="btn btn-link" onclick="toggleFavorite(this)"><i class="fas ${task.favorite ? "fa-heart" : "fa-heart-o"}"></i></button></td>
+    //     <td class="${task.completed ? "completed" : ""}">${task.text}</td>
+    //     <td>${task.deadline}</td>
+    //     <td>${task.category}</td>
+    //     ${isCompleted ? '<td><button class="btn btn-warning" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="btn btn-warning" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
+    //     ${isCompleted ? "" : '<td><button class="btn btn-success" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
+    //     <td><button class="btn btn-danger" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
+    //   `;
 
-  document
-    .getElementById(isCompleted ? "completedTasks" : "pendingTasks")
-    .appendChild(taskRow)
+    document.getElementById(isCompleted ? "completedTasks" : "pendingTasks").appendChild(taskRow);
 }
 
+// function editTask(button) {
+//     const row = button.parentElement.parentElement;
+//     const taskId = row.getAttribute("data-id");
+//     const taskText = row.children[1].innerText;
+//     const taskDeadline = row.children[2].innerText;
+//     const taskCategory = row.children[3].innerText;
+
+//     document.getElementById("task").value = taskText;
+//     document.getElementById("deadline").value = taskDeadline;
+//     document.getElementById("category").value = taskCategory;
+
+//     deleteTask(button, false);
+// }
 function editTask(button) {
-  const row = button.parentElement.parentElement
-  const taskId = row.getAttribute("data-id")
-  const taskText = row.children[1].innerText
-  const taskDeadline = row.children[2].innerText
-  const taskCategory = row.children[3].innerText
+    const row = button.parentElement.parentElement;
+    const taskId = row.getAttribute("data-id");
 
-  document.getElementById("task").value = taskText
-  document.getElementById("deadline").value = taskDeadline
-  document.getElementById("category").value = taskCategory
+    let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+    let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
+    let task = pendingTasks.find((task) => task.id == taskId) || completedTasks.find((task) => task.id == taskId);
 
-  deleteTask(button, false)
+    if (task) {
+        document.getElementById("task").value = task.text;
+        document.getElementById("deadline").value = task.deadline;
+        document.getElementById("category").value = task.category;
+        isEditing = true;
+        editingTaskId = taskId;
+        addTaskOpen();
+    }
 }
 
 function completeTask(button) {
-  const row = button.parentElement.parentElement
-  const taskId = row.getAttribute("data-id")
+    const row = button.parentElement.parentElement;
+    const taskId = row.getAttribute("data-id");
 
-  let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || []
-  let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || []
+    let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+    let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
 
-  const taskIndex = pendingTasks.findIndex((task) => task.id == taskId)
-  const [task] = pendingTasks.splice(taskIndex, 1)
-  task.completed = true
-  completedTasks.push(task)
+    const taskIndex = pendingTasks.findIndex((task) => task.id == taskId);
+    const [task] = pendingTasks.splice(taskIndex, 1);
+    task.completed = true;
+    completedTasks.push(task);
 
-  localStorage.setItem("pendingTasks", JSON.stringify(pendingTasks))
-  localStorage.setItem("completedTasks", JSON.stringify(completedTasks))
+    localStorage.setItem("pendingTasks", JSON.stringify(pendingTasks));
+    localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
 
-  row.remove()
-  addTaskToDOM(task, true)
+    row.remove();
+    addTaskToDOM(task, true);
 
-  if (pendingTasks.length === 0) {
-    document.getElementById("noPendingTasks").style.display = "table-row"
-  }
+    if (pendingTasks.length === 0) {
+        document.getElementById("noPendingTasks").style.display = "table-row";
+    }
 
-  document.getElementById("noCompletedTasks").style.display = "none"
+    document.getElementById("noCompletedTasks").style.display = "none";
 }
 
 function cancelCompleteTask(button) {
-  const row = button.parentElement.parentElement
-  const taskId = row.getAttribute("data-id")
+    const row = button.parentElement.parentElement;
+    const taskId = row.getAttribute("data-id");
 
-  let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || []
-  let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || []
+    let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+    let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
 
-  const taskIndex = completedTasks.findIndex((task) => task.id == taskId)
-  const [task] = completedTasks.splice(taskIndex, 1)
-  task.completed = false
-  pendingTasks.push(task)
+    const taskIndex = completedTasks.findIndex((task) => task.id == taskId);
+    const [task] = completedTasks.splice(taskIndex, 1);
+    task.completed = false;
+    pendingTasks.push(task);
 
-  localStorage.setItem("pendingTasks", JSON.stringify(pendingTasks))
-  localStorage.setItem("completedTasks", JSON.stringify(completedTasks))
+    localStorage.setItem("pendingTasks", JSON.stringify(pendingTasks));
+    localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
 
-  row.remove()
-  addTaskToDOM(task, false)
+    row.remove();
+    addTaskToDOM(task, false);
 
-  if (completedTasks.length === 0) {
-    document.getElementById("noCompletedTasks").style.display = "table-row"
-  }
+    if (completedTasks.length === 0) {
+        document.getElementById("noCompletedTasks").style.display = "table-row";
+    }
 
-  document.getElementById("noPendingTasks").style.display = "none"
+    document.getElementById("noPendingTasks").style.display = "none";
 }
 
 function deleteTask(button, isCompleted) {
-  const row = button.parentElement.parentElement
-  const taskId = row.getAttribute("data-id")
+    const row = button.parentElement.parentElement;
+    const taskId = row.getAttribute("data-id");
 
-  let tasks =
-    JSON.parse(
-      localStorage.getItem(isCompleted ? "completedTasks" : "pendingTasks")
-    ) || []
-  tasks = tasks.filter((task) => task.id != taskId)
+    let tasks = JSON.parse(localStorage.getItem(isCompleted ? "completedTasks" : "pendingTasks")) || [];
+    tasks = tasks.filter((task) => task.id != taskId);
 
-  localStorage.setItem(
-    isCompleted ? "completedTasks" : "pendingTasks",
-    JSON.stringify(tasks)
-  )
+    localStorage.setItem(isCompleted ? "completedTasks" : "pendingTasks", JSON.stringify(tasks));
 
-  row.remove()
+    row.remove();
 
-  if (!isCompleted && tasks.length === 0) {
-    document.getElementById("noPendingTasks").style.display = "table-row"
-  }
+    if (!isCompleted && tasks.length === 0) {
+        document.getElementById("noPendingTasks").style.display = "table-row";
+    }
 
-  if (isCompleted && tasks.length === 0) {
-    document.getElementById("noCompletedTasks").style.display = "table-row"
-  }
+    if (isCompleted && tasks.length === 0) {
+        document.getElementById("noCompletedTasks").style.display = "table-row";
+    }
 }
 
 function toggleFavorite(button) {
-  const row = button.parentElement.parentElement
-  const taskId = row.getAttribute("data-id")
-  let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || []
-  let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || []
-  let task =
-    pendingTasks.find((task) => task.id == taskId) ||
-    completedTasks.find((task) => task.id == taskId)
+    const row = button.parentElement.parentElement;
+    const taskId = row.getAttribute("data-id");
+    let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+    let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
+    let task = pendingTasks.find((task) => task.id == taskId) || completedTasks.find((task) => task.id == taskId);
 
-  if (task) {
-    task.favorite = !task.favorite
-    button.querySelector("i").classList.toggle("fa-heart")
-    button.querySelector("i").classList.toggle("fa-heart-o")
+    if (task) {
+        task.favorite = !task.favorite;
+        button.innerHTML = task.favorite ? "🩷" : "🤍";
 
-    localStorage.setItem("pendingTasks", JSON.stringify(pendingTasks))
-    localStorage.setItem("completedTasks", JSON.stringify(completedTasks))
-  }
+        localStorage.setItem("pendingTasks", JSON.stringify(pendingTasks));
+        localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
+    }
+}
+
+function addTaskOpen() {
+    const modal = document.querySelector(".taskModal-wrap");
+    modal.style.display = "block";
+    setTimeout(() => {
+        modal.style.opacity = 1;
+    }, 10);
+}
+
+function addTaskClose() {
+    const modal = document.querySelector(".taskModal-wrap");
+    modal.style.opacity = 0;
+    setTimeout(() => {
+        modal.style.display = "none";
+    }, 250);
+}
+
+function confirmTask() {
+    addTask();
+    addTaskClose();
 }
