@@ -3,6 +3,7 @@ body {
 }
 
 .container {
+  margin: 0 auto;
   max-width: 1520px;
   width: 100%;
   background-color: white;
@@ -15,6 +16,7 @@ body {
   margin: 0 auto;
   padding: 20px;
 }
+
 /* tittle date */
 .tittle,
 .date {
@@ -34,6 +36,36 @@ body {
 }
 #diary-date {
   margin-left: 2em;
+}
+
+/* 리스트 박스 */
+.list_box {
+  margin: 50px 0;
+  width: 100%;
+  height: 600px;
+  border: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 3px 3px;
+  position: relative;
+}
+
+#add_button {
+  color: #fff;
+  background-color: #987aca;
+  border: none;
+  border-radius: 100px;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+#add_button i {
+  font-size: 2em;
+}
+#add_button:hover {
+  background-color: #8765be;
 }
 /* 일기 입력 칸 스타일 설정 */
 #diary-entry {
@@ -73,6 +105,8 @@ body {
 }
 
 .entry {
+  width: 350px;
+  height: 200px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -87,30 +121,31 @@ body {
   display: flex; /* 버튼들을 가로로 정렬하기 위해 Flexbox 사용 */
 }
 .entry-content {
-  display: none;
+  /* display: none; */
 }
 /* 수정 버튼 스타일 */
 .edit-entry {
   display: inline-block;
   padding: 10px;
-  background-color: #ddd;
-  color: #333;
+  background-color: #987aca;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
   margin-left: 10px;
 }
-
+.edit-entry i {
+  font-size: 2em;
+}
 .edit-entry:hover {
-  background-color: #ccc;
+  background-color: #8765be;
 }
 
 /* 삭제 버튼 스타일 */
 .delete-entry {
   display: inline-block;
   padding: 10px;
-  background-color: #ff4d4d;
+  background-color: #987aca;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -118,16 +153,18 @@ body {
   font-size: 14px;
   margin-left: 10px;
 }
-
+.delete-entry i {
+  font-size: 1.5em;
+}
 .delete-entry:hover {
-  background-color: #ff6666;
+  background-color: #8765be;
 }
 
 /* 확인 버튼 스타일 */
 .view-entry {
   display: inline-block;
   padding: 10px;
-  background-color: #4a90e2;
+  background-color: #987aca;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -137,7 +174,7 @@ body {
 }
 
 .view-entry:hover {
-  background-color: #357abd;
+  background-color: #8765be;
 }
 
 /* 수정 모달 스타일 */
@@ -195,7 +232,7 @@ body {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #4a90e2;
+  background-color: #987aca;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -204,7 +241,7 @@ body {
 }
 
 #save-edit:hover {
-  background-color: #357abd;
+  background-color: #8765be;
 }
 
 /* 확인 모달 스타일 */
@@ -214,9 +251,14 @@ body {
 }
 
 #view-entry-content {
-  font-size: 18px;
-  margin-top: 20px;
-  color: #333;
+  width: 100%;
+  height: 250px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
 /* 삭제 확인 모달 스타일 */
@@ -230,7 +272,7 @@ body {
   padding: 10px;
   width: 80px;
   margin: 10px;
-  background-color: #4a90e2;
+  background-color: #987aca;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -239,9 +281,9 @@ body {
 }
 
 #confirm-delete:hover {
-  background-color: #357abd;
+  background-color: #8765be;
 }
 
 #cancel-delete:hover {
-  background-color: #357abd;
+  background-color: #8765be;
 }
