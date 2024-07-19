@@ -9,10 +9,6 @@
 	•	deleteTask: 적절한 섹션에서 태스크를 삭제하고 필요 시 “등록된 데이터가 없습니다” 메시지를 표시합니다.
  */
 
-// app.js
-
-// app.js
-
 document.addEventListener("DOMContentLoaded", loadTasks);
 
 function loadTasks() {
@@ -51,6 +47,7 @@ function addTask() {
         dateAdded: new Date().toLocaleDateString(),
         category: categoryInput.value,
         completed: false,
+        favorite: false,
     };
 
     addTaskToDOM(task, false);
@@ -70,30 +67,62 @@ function addTaskToDOM(task, isCompleted) {
     const taskRow = document.createElement("tr");
     taskRow.setAttribute("data-id", task.id);
     taskRow.innerHTML = `
-    <td>${task.dateAdded}</td>
+    <td>
+      <button class="favorite-button" onclick="toggleFavorite(this)">
+       ${task.favorite ? "🩷" : "🤍"}
+      </button>
+    </td>
     <td class="${task.completed ? "completed" : ""}">${task.text}</td>
+    <td><span>${task.category}</span></td>
     <td>${task.deadline}</td>
-    <td>${task.category}</td>
-    ${isCompleted ? '<td><button class="btn btn-warning" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="btn btn-warning" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
-    ${isCompleted ? "" : '<td><button class="btn btn-success" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
-    <td><button class="btn btn-danger" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
-  `;
+    <div class="icon-box">
+    ${isCompleted ? '<td><button class="fill-button" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="fill-button" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
+    ${isCompleted ? "" : '<td><button class="fill-button" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
+    <td><button class="fill-button" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
+    </div>
+    `;
+    // taskRow.innerHTML = `
+    //     <td><button class="btn btn-link" onclick="toggleFavorite(this)"><i class="fas ${task.favorite ? "fa-heart" : "fa-heart-o"}"></i></button></td>
+    //     <td class="${task.completed ? "completed" : ""}">${task.text}</td>
+    //     <td>${task.deadline}</td>
+    //     <td>${task.category}</td>
+    //     ${isCompleted ? '<td><button class="btn btn-warning" onclick="cancelCompleteTask(this)"><i class="fas fa-undo"></i></button></td>' : '<td><button class="btn btn-warning" onclick="editTask(this)"><i class="fas fa-edit"></i></button></td>'}
+    //     ${isCompleted ? "" : '<td><button class="btn btn-success" onclick="completeTask(this)"><i class="fas fa-check"></i></button></td>'}
+    //     <td><button class="btn btn-danger" onclick="deleteTask(this, ${isCompleted})"><i class="fas fa-trash"></i></button></td>
+    //   `;
 
     document.getElementById(isCompleted ? "completedTasks" : "pendingTasks").appendChild(taskRow);
 }
 
+// function editTask(button) {
+//     const row = button.parentElement.parentElement;
+//     const taskId = row.getAttribute("data-id");
+//     const taskText = row.children[1].innerText;
+//     const taskDeadline = row.children[2].innerText;
+//     const taskCategory = row.children[3].innerText;
+
+//     document.getElementById("task").value = taskText;
+//     document.getElementById("deadline").value = taskDeadline;
+//     document.getElementById("category").value = taskCategory;
+
+//     deleteTask(button, false);
+// }
 function editTask(button) {
     const row = button.parentElement.parentElement;
     const taskId = row.getAttribute("data-id");
-    const taskText = row.children[1].innerText;
-    const taskDeadline = row.children[2].innerText;
-    const taskCategory = row.children[3].innerText;
 
-    document.getElementById("task").value = taskText;
-    document.getElementById("deadline").value = taskDeadline;
-    document.getElementById("category").value = taskCategory;
+    let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+    let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
+    let task = pendingTasks.find((task) => task.id == taskId) || completedTasks.find((task) => task.id == taskId);
 
-    deleteTask(button, false);
+    if (task) {
+        document.getElementById("task").value = task.text;
+        document.getElementById("deadline").value = task.deadline;
+        document.getElementById("category").value = task.category;
+        isEditing = true;
+        editingTaskId = taskId;
+        addTaskOpen();
+    }
 }
 
 function completeTask(button) {
@@ -164,4 +193,41 @@ function deleteTask(button, isCompleted) {
     if (isCompleted && tasks.length === 0) {
         document.getElementById("noCompletedTasks").style.display = "table-row";
     }
+}
+
+function toggleFavorite(button) {
+    const row = button.parentElement.parentElement;
+    const taskId = row.getAttribute("data-id");
+    let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+    let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
+    let task = pendingTasks.find((task) => task.id == taskId) || completedTasks.find((task) => task.id == taskId);
+
+    if (task) {
+        task.favorite = !task.favorite;
+        button.innerHTML = task.favorite ? "🩷" : "🤍";
+
+        localStorage.setItem("pendingTasks", JSON.stringify(pendingTasks));
+        localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
+    }
+}
+
+function addTaskOpen() {
+    const modal = document.querySelector(".taskModal-wrap");
+    modal.style.display = "block";
+    setTimeout(() => {
+        modal.style.opacity = 1;
+    }, 10);
+}
+
+function addTaskClose() {
+    const modal = document.querySelector(".taskModal-wrap");
+    modal.style.opacity = 0;
+    setTimeout(() => {
+        modal.style.display = "none";
+    }, 250);
+}
+
+function confirmTask() {
+    addTask();
+    addTaskClose();
 }

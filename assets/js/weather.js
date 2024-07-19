@@ -1,4 +1,3 @@
-
 // OpenWeatherMap API 키 설정
 const API_KEY = config.apikey
 
