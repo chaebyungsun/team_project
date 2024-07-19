@@ -9,6 +9,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="./assets/styles/reset.css" />
     <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link rel="stylesheet" href="./assets/styles/weather.css" />
 </head>
 
 <body>
@@ -92,20 +93,6 @@
                 <i class="fa-solid fa-newspaper"></i>
                 <span><a href="/diary.html">Diary</a></span>
             </li>
-            <li class="box-wrap">
-                <div id="date-box">
-                    <div class="today-wrap">
-                        <span id="today"></span>
-                    </div>
-                    <div class="date-wrap">
-                        <span id="day"></span>
-                        <span id="date"></span>
-                        <span id="months"></span>
-                        <span id="year"></span>
-                    </div>
-                </div>
-                <div id="weather-box"></div>
-            </li>
         </ul>
         <!-- nav end -->
 
@@ -116,7 +103,7 @@
                 <h1 class="logo">
                     <a href="#">Dashboard</a>
                 </h1>
-                <input class="search-bar" type="search" placeholder="Search for something" />
+                <div id="weather-box"></div>
             </header>
             <!-- header end -->
 
@@ -307,7 +294,7 @@
                         <div class="task-dash-optionBox">
                             <select class="diary-dash-option">
                                 <option value="Weekly">Weekly</option>
-                                <option value="Daliy">Daliy</option>
+                                <option value="Daily">Daily</option>
                                 <option value="Monthly">Monthly</option>
                             </select>
                         </div>
