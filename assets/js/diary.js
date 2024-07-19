@@ -1,4 +1,5 @@
 const addEntryButton = document.getElementById("add-entry"); // 추가 버튼
+const diaryTitleInput = document.getElementById("diary-title"); // 일기 제목 입력 input
 const diaryEntryTextarea = document.getElementById("diary-entry"); // 일기 입력 textarea
 const entriesDiv = document.getElementById("entries"); // 일기 항목이 표시될 div
 const modal = document.getElementById("modal"); // 수정 모달 div
@@ -19,9 +20,10 @@ let entryToDelete = null; // 삭제할 일기 항목
 const saveEntries = () => {
   const entries = []; // 모든 일기 항목을 저장할 배열 생성
   document.querySelectorAll(".entry").forEach((entryDiv) => {
+    const entryTitle = entryDiv.querySelector(".entry-title").textContent; // 일기 제목
     const entryContent = entryDiv.querySelector(".entry-content").textContent; // 일기 내용
     const entryDate = entryDiv.querySelector(".entry-date").textContent; // 일기 작성 날짜
-    entries.push({ content: entryContent, date: entryDate }); // 배열에 일기 객체 추가
+    entries.push({ title: entryTitle, content: entryContent, date: entryDate }); // 배열에 일기 객체 추가
   });
   localStorage.setItem("diaryEntries", JSON.stringify(entries)); // 배열을 JSON 문자열로 변환하여 로컬 스토리지에 저장
 };
@@ -33,32 +35,37 @@ const loadEntries = () => {
     const entryDiv = document.createElement("div"); // 새로운 일기 항목 div 생성
     entryDiv.classList.add("entry");
 
-    const entryContent = document.createElement("p"); // 일기 내용을 표시할 p 요소 생성
-    entryContent.textContent = entry.content;
-    entryContent.classList.add("entry-content");
+    const entryTitle = document.createElement("h3"); // 일기 제목을 표시할 h3 요소 생성
+    entryTitle.textContent = entry.title;
+    entryTitle.classList.add("entry-title");
 
     const entryDate = document.createElement("span"); // 일기 작성 날짜를 표시할 span 요소 생성
     entryDate.textContent = entry.date;
     entryDate.classList.add("entry-date");
 
+    const entryContent = document.createElement("p"); // 일기 내용을 표시할 p 요소 생성
+    entryContent.textContent = entry.content;
+    entryContent.classList.add("entry-content");
+
     const buttonBox = document.createElement("div"); // 버튼을 감싸는 div 요소 생성
     buttonBox.classList.add("button-box");
 
     const viewButton = document.createElement("button"); // 확인 버튼 생성
-    viewButton.textContent = "확인";
+    viewButton.textContent = "check";
     viewButton.classList.add("view-entry");
 
     const editButton = document.createElement("button"); // 수정 버튼 생성
-    editButton.textContent = "수정";
+    editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
     editButton.classList.add("edit-entry");
 
     const deleteButton = document.createElement("button"); // 삭제 버튼 생성
-    deleteButton.textContent = "삭제";
+    deleteButton.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
     deleteButton.classList.add("delete-entry");
 
     // 생성한 요소들을 entryDiv에 추가
-    entryDiv.appendChild(entryContent); // 일기 내용 추가
+    entryDiv.appendChild(entryTitle); // 일기 제목 추가
     entryDiv.appendChild(entryDate); // 일기 작성 날짜 추가
+    entryDiv.appendChild(entryContent); // 일기 내용 추가
     entryDiv.appendChild(buttonBox); // 버튼을 감싸는 div 추가
 
     buttonBox.appendChild(viewButton); // 확인 버튼을 buttonBox에 추가
@@ -90,9 +97,11 @@ const loadEntries = () => {
 
 // 일기를 추가하는 함수 정의
 const addEntry = () => {
-  let entryText = diaryEntryTextarea.value.trim(); // 일기 내용을 textarea에서 가져오고 공백 제거
-  if (entryText === "") {
-    alert("일기 내용을 입력하세요!"); // 일기 내용이 비어있으면 알림창 띄우고 함수 종료
+  const entryTitle = diaryTitleInput.value.trim(); // 일기 제목을 input에서 가져오고 공백 제거
+  const entryText = diaryEntryTextarea.value.trim(); // 일기 내용을 textarea에서 가져오고 공백 제거
+
+  if (entryTitle === "" || entryText === "") {
+    alert("제목과 일기 내용을 입력하세요!"); // 일기 내용이 비어있으면 알림창 띄우고 함수 종료
     return;
   }
 
@@ -110,40 +119,46 @@ const addEntry = () => {
   const entryDiv = document.createElement("div"); // 새로운 일기 항목 div 생성
   entryDiv.classList.add("entry");
 
-  const entryContent = document.createElement("p"); // 일기 내용을 표시할 p 요소 생성
-  entryContent.textContent = entryText;
-  entryContent.classList.add("entry-content");
+  const entryTitleElem = document.createElement("h3"); // 일기 제목을 표시할 h3 요소 생성
+  entryTitleElem.textContent = entryTitle;
+  entryTitleElem.classList.add("entry-title");
 
   const entryDate = document.createElement("span"); // 일기 작성 날짜를 표시할 span 요소 생성
   entryDate.textContent = formattedDate;
   entryDate.classList.add("entry-date");
 
+  const entryContent = document.createElement("p"); // 일기 내용을 표시할 p 요소 생성
+  entryContent.textContent = entryText;
+  entryContent.classList.add("entry-content");
+
   const buttonBox = document.createElement("div"); // 버튼을 감싸는 div 요소 생성
   buttonBox.classList.add("button-box");
 
   const viewButton = document.createElement("button"); // 확인 버튼 생성
-  viewButton.textContent = "확인";
+  viewButton.textContent = "check";
   viewButton.classList.add("view-entry");
 
   const editButton = document.createElement("button"); // 수정 버튼 생성
-  editButton.textContent = "수정";
+  editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
   editButton.classList.add("edit-entry");
 
   const deleteButton = document.createElement("button"); // 삭제 버튼 생성
-  deleteButton.textContent = "삭제";
+  deleteButton.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
   deleteButton.classList.add("delete-entry");
 
   // 생성한 요소들을 entryDiv에 추가
-  entryDiv.appendChild(entryContent);
-  entryDiv.appendChild(entryDate);
-  entryDiv.appendChild(buttonBox);
+  entryDiv.appendChild(entryTitleElem); // 일기 제목 추가
+  entryDiv.appendChild(entryDate); // 일기 작성 날짜 추가
+  entryDiv.appendChild(entryContent); // 일기 내용 추가
+  entryDiv.appendChild(buttonBox); // 버튼을 감싸는 div 추가
 
-  buttonBox.appendChild(viewButton);
-  buttonBox.appendChild(editButton);
-  buttonBox.appendChild(deleteButton);
+  buttonBox.appendChild(viewButton); // 확인 버튼을 buttonBox에 추가
+  buttonBox.appendChild(editButton); // 수정 버튼을 buttonBox에 추가
+  buttonBox.appendChild(deleteButton); // 삭제 버튼을 buttonBox에 추가
 
   entriesDiv.prepend(entryDiv); // entryDiv를 entriesDiv의 맨 앞에 추가
 
+  diaryTitleInput.value = ""; // 제목 input 초기화
   diaryEntryTextarea.value = ""; // textarea 초기화
 
   // 삭제 버튼 클릭 시 삭제 확인 모달 표시
