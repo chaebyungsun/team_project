@@ -22,20 +22,43 @@ const getWeather = async (position) => {
 
     // 날씨에 따른 아이콘 설정
     const weatherIcons = {
+      Thunderstorm: "⛈️",
+      Drizzle: "🌦️",
       Rain: "🌧️",
       Snow: "🌨️",
+      Smoke: "🌫️",
       Clouds: "⛅️",
       Clear: "☀️",
       Wind: "💨",
+      Mist: "🌫️",
+      Haze: "🌫️",
+      Dust: "😷",
+      Fog: "🌁",
+      Sand: "🏜️",
+      Ash: "🌋",
+      Squall: "🌬️",
+      Tornado: "🌪️",
     }
 
     // 날씨에 따른 메시지 설정
     const weatherMessages = {
+      Thunderstorm: "천둥번개가 치니 조심해요!",
+      Drizzle: "이슬비가 내려요!",
       Rain: "우산 챙기는 걸 잊지마!",
       Snow: "미끄러지지 않게 조심해요!",
       Clouds: "구름이 많아요!",
       Clear: "맑아요!",
-      Wind: "날아가지 않게 조심해요!",
+      Wind: "바람이 많이 불어요!",
+      Mist: "안개가 꼈네요!",
+      Smoke: "연기가 많아요!",
+      Haze: "안개가 많아요!",
+      Dust: "미세먼지가 많으니 마스크쓰세요!",
+      Fog: "안개가 짙으니 조심해요!",
+      Sand: "모래바람이 불어요!",
+      Ash: "화산재가 날리고 있어요!",
+      Squall: "돌풍이 불어요!",
+      Tornado: "날아가지 않게 조심해요",
+      Clear: "오늘은 맑은 날 외출하자!!",
     }
 
     // 온도에 따른 메시지 설정
@@ -47,7 +70,7 @@ const getWeather = async (position) => {
     // 날씨 정보를 통해 온도에 따른 메시지 결정
     const tempMessage =
       // 만약 온도가 30도 이상이면
-      data.main.temp > 30
+      data.main.temp > 33
         ? //tempMessages.hot 메시지 반환
           tempMessages.hot
         : // 만약 온도가 10도 미만이면
@@ -61,6 +84,8 @@ const getWeather = async (position) => {
     const weatherMessage =
       weatherMessages[data.weather[0].main] || "날씨 정보를 제공할 수 없어요."
 
+    console.log([data.weather[0].main])
+
     // 날씨 아이콘과 메시지 설정
     weatherBox.innerHTML = `
       <div class="weather-wrap">
@@ -69,7 +94,7 @@ const getWeather = async (position) => {
         }</span>
         <span id="weather-temp">${Math.ceil(data.main.temp)}°C</span>
       </div>
-      <span id="weather-notice">${weatherMessage} ${tempMessage}</span>
+      <span id="weather-notice">${weatherMessage} <br /> ${tempMessage}</span>
     `
   } catch (error) {
     // 에러가 발생한 경우 알림 요소에 메시지 설정
