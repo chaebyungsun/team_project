@@ -13,54 +13,20 @@
     <link rel="stylesheet" href="./assets/styles/responsive.css">
 </head>
 
-<body id = main-index>
-    <!-- taskModal start -->
-    <div class="taskModal-wrap">
-        <div class="taskModal">
-            <div class="taskModal-titleBox">
-                <h4 class="task-dash-title">My tasks</h4>
-                <button id="addTask-close-button" class="addTask-close" onclick="addTaskClose()">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
+<body id=main-index>
 
-            <div class="taskModal-contentBox">
-                <span>Task*</span>
-                <input class="task-inputArea" type="text" placeholder="Enter a task" id="task" />
-                <span>Deadline*</span>
-                <input class="task-inputArea" type="datetime-local" id="deadline" />
-                <span>Category*</span>
-                <select class="task-inputArea" id="category">
-                    <option value="Personal">Personal</option>
-                    <option value="Work">Work</option>
-                    <option value="Study">Study</option>
-                    <option value="Others">Others</option>
-                </select>
-            </div>
-
-            <div class="taskModal-btnBox">
-                <button onclick="addTaskClose()" class="taskModal-cancel">
-                    Cancel
-                </button>
-                <button class="taskModal-confirm" onclick="confirmTask()">
-                    Confirm
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- taskModal end -->
 
     <div class="container">
         <div class="pl"></div>
         <!-- nav start -->
         <div class="overlay"></div>
         <ul class="nav mobile">
-          <li>
-            <!-- 닫기 버튼 -->
-            <button onclick="overlayClose()" class="close-menu hide">
-              <i class="fas fa-times"></i>
-            </button>
-          </li>
+            <li>
+                <!-- 닫기 버튼 -->
+                <button onclick="overlayClose()" class="close-menu hide">
+                    <i class="fas fa-times"></i>
+                </button>
+            </li>
             <li class="active">
                 <i class="fa-solid fa-house"></i>
                 <span><a href="#">Dashboard</a></span>
@@ -80,9 +46,9 @@
         <main class="inner">
             <!-- header start -->
             <header>
-              <button onclick="overlayOpen()" id="overlay-open" class="open-menu hide">
-                <i class="fas fa-bars"></i>
-              </button>
+                <button onclick="overlayOpen()" id="overlay-open" class="open-menu hide">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <h1 class="logo">
                     <a href="#">Dashboard</a>
                 </h1>
@@ -188,21 +154,16 @@
 
                 <!-- task-dash-box start -->
                 <div class="task-dash-box">
-                    
+
                     <!-- add-task-box start -->
-                    
+
                     <div class="task-diary-titleBox">
                         <h4 class="task-dash-title">My Tasks</h4>
-                        <span onclick="addTaskOpen()"class="dash-addBtn"><i class="fa-solid fa-plus"></i> Add Task</span>
+
                     </div>
                     <!-- add-task-box end -->
 
-                    <div class="task-dash-optionBox">
-                        <select class="task-dash-option">
-                            <option value="By Priority">By Priority</option>
-                            <option value="By Category">By Category</option>
-                        </select>
-                    </div>
+
 
                     <!-- task-dash-cardBox start -->
                     <div class="task-dash-cardBox">
@@ -270,17 +231,11 @@
 
                     <div class="task-diary-titleBox">
                         <h4 class="task-dash-title">My Diary</h4>
-                        <span class="dash-addBtn"><i class="fa-solid fa-plus"></i> Add Diary</span>
+
                     </div>
 
                     <div class="dash-diary-tableBox">
-                        <div class="task-dash-optionBox">
-                            <select class="diary-dash-option">
-                                <option value="Weekly">Weekly</option>
-                                <option value="Daily">Daily</option>
-                                <option value="Monthly">Monthly</option>
-                            </select>
-                        </div>
+
                         <table>
                             <thead class="table-thead">
                                 <tr>
@@ -290,30 +245,35 @@
                             </thead>
                             <tbody class="table-tbody">
                                 <tr>
-                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면 좋겠다</td>
+                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면
+                                        좋겠다</td>
                                     <td>July 16, 2024</td>
                                 </tr>
                                 <tr>
-                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면 좋겠다</td>
+                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면
+                                        좋겠다</td>
                                     <td>July 16, 2024</td>
                                 </tr>
                                 <tr>
-                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면 좋겠다</td>
+                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면
+                                        좋겠다</td>
                                     <td>July 16, 2024</td>
                                 </tr>
                                 <tr>
-                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면 좋겠다</td>
+                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면
+                                        좋겠다</td>
                                     <td>July 16, 2024</td>
                                 </tr>
                                 <tr>
-                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면 좋겠다</td>
+                                    <td class="table-tbody-content">오늘은 비가 왔다. 라떼를 주문해서 마셨는데 맛있었다. 부침개도 먹고 싶다. 비가 그만왔으면
+                                        좋겠다</td>
                                     <td>July 16, 2024</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                <!-- task-dash-box start -->
-            </div>
+                    <!-- task-dash-box start -->
+                </div>
         </main>
         <!-- main end -->
     </div>
