@@ -166,66 +166,27 @@
 
 
                     <!-- task-dash-cardBox start -->
-                    <div class="task-dash-cardBox">
+                    <div class="task-dash-cardBox" id="task-dash-cardBox">
                         <div class="card-titleBox">
                             <span class="cardTitle">Pending Tasks</span>
-                            <p class="card-titleNumber">03</p>
+                            <p class="card-titleNumber" id="dash-pend-count">0</p>
                         </div>
-                        <div class="card-contentBox cardColor-gray">
-                            <div class="cardContents">
-                                <span class="contentsTitle">To buy a rain coat</span>
-                                <p class="contentsSub">(하위 항목)</p>
-                                <span class="contentsDeadline">Deadline: Sep 8, 2024</span>
-                            </div>
-                            <div class="cardIcon-box">
-                                <i class="fa-regular fa-circle-check"></i>
-                                <i class="fa-solid fa-pencil"></i>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </div>
-                        </div>
-                        <div class="card-contentBox cardColor-yellow">
-                            <div class="cardContents">
-                                <span class="contentsTitle">Scrum Meeting</span>
-                                <p class="contentsSub">(하위 항목)</p>
-                                <span class="contentsDeadline">Deadline: Sep 8, 2024</span>
-                            </div>
-                            <div class="cardIcon-box">
-                                <i class="fa-regular fa-circle-check"></i>
-                                <i class="fa-solid fa-pencil"></i>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </div>
+                        <!-- 카드식 데이터 를 추가합니다. -->
+                        <div class="alert alert-light" role="alert" id="noPendingData" style="display:none;">
+                            No Pending Data
                         </div>
                     </div>
 
-                    <div class="task-dash-cardBox">
+                    <div class="task-dash-cardBox" id="task-dash-cardBox-completed">
                         <div class="card-titleBox cardColor-skyblue">
                             <span class="cardTitle">Done Tasks</span>
-                            <p class="card-titleNumber">01</p>
+                            <p class="card-titleNumber" id="dash-comp-count">0</p>
                         </div>
-                        <div class="card-contentBox cardColor-green">
-                            <div class="cardContents">
-                                <span class="contentsTitle">To buy a rain coat</span>
-                                <p class="contentsSub">(하위 항목)</p>
-                                <span class="contentsDeadline">Deadline: Sep 8, 2024</span>
-                            </div>
-                            <div class="cardIcon-box">
-                                <i class="fa-regular fa-circle-check"></i>
-                                <i class="fa-solid fa-pencil"></i>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </div>
+                        <!-- 데이터 들어가는 공간 -->
+                        <div class="alert alert-light" role="alert" id="noCompletedData" style="display:none;">
+                            No Completed Data
                         </div>
-                        <div class="card-contentBox cardColor-violet">
-                            <div class="cardContents">
-                                <span class="contentsTitle">Scrum Meeting</span>
-                                <p class="contentsSub">(하위 항목)</p>
-                                <span class="contentsDeadline">Deadline: Sep 8, 2024</span>
-                            </div>
-                            <div class="cardIcon-box">
-                                <i class="fa-regular fa-circle-check"></i>
-                                <i class="fa-solid fa-pencil"></i>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </div>
-                        </div>
+
                     </div>
                     <!-- task-dash-cardBox end  -->
 
@@ -282,11 +243,13 @@
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/10d8588d9a.js" crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/task.js"></script>
+    <!-- <script src="./assets/js/task.js"></script> -->
     <script src="./assets/js/apikey.js"></script>
     <script src="./assets/js/date.js"></script>
     <script src="./assets/js/weather.js"></script>
     <script src="./assets/js/menuopen.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+    <script src="./assets/js/custom.js"></script>
 </body>
 
 </html>
