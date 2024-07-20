@@ -11,10 +11,10 @@
 
 document.addEventListener("DOMContentLoaded", loadTasks)
 
-export let isEditing = false // 편집 모드 플래그
-export let editingTaskId = null // 편집 중인 태스크 ID
+let isEditing = false // 편집 모드 플래그
+let editingTaskId = null // 편집 중인 태스크 ID
 
-export function loadTasks() {
+function loadTasks() {
   const pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || []
   const completedTasks =
     JSON.parse(localStorage.getItem("completedTasks")) || []
@@ -35,7 +35,7 @@ export function loadTasks() {
   }
 }
 
-export function addTask() {
+function addTask() {
   const taskInput = document.getElementById("task")
   const deadlineInput = document.getElementById("deadline")
   const categoryInput = document.getElementById("category")
@@ -68,7 +68,7 @@ export function addTask() {
   document.getElementById("noPendingTasks").style.display = "none"
 }
 
-export function addTaskToDOM(task, isCompleted) {
+function addTaskToDOM(task, isCompleted) {
   const taskRow = document.createElement("tr")
   taskRow.setAttribute("data-id", task.id)
   taskRow.innerHTML = `
@@ -100,7 +100,7 @@ export function addTaskToDOM(task, isCompleted) {
     .appendChild(taskRow)
 }
 
-export function editTask(button) {
+function editTask(button) {
   const row = button.parentElement.parentElement
   const taskId = row.getAttribute("data-id")
 
@@ -120,7 +120,7 @@ export function editTask(button) {
     addTaskOpen()
   }
 }
-export function updateTaskInLocalStorage(updatedTask) {
+function updateTaskInLocalStorage(updatedTask) {
   let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || []
   let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || []
 
@@ -153,7 +153,7 @@ export function updateTaskInLocalStorage(updatedTask) {
   location.reload(true)
   //loadTasks();
 }
-export function completeTask(button) {
+function completeTask(button) {
   const row = button.parentElement.parentElement
   const taskId = row.getAttribute("data-id")
 
@@ -178,7 +178,7 @@ export function completeTask(button) {
   document.getElementById("noCompletedTasks").style.display = "none"
 }
 
-export function cancelCompleteTask(button) {
+function cancelCompleteTask(button) {
   const row = button.parentElement.parentElement
   const taskId = row.getAttribute("data-id")
 
@@ -203,7 +203,7 @@ export function cancelCompleteTask(button) {
   document.getElementById("noPendingTasks").style.display = "none"
 }
 
-export function deleteTask(button, isCompleted) {
+function deleteTask(button, isCompleted) {
   const row = button.parentElement.parentElement
   const taskId = row.getAttribute("data-id")
 
@@ -229,7 +229,7 @@ export function deleteTask(button, isCompleted) {
   }
 }
 
-export function toggleFavorite(button) {
+function toggleFavorite(button) {
   const row = button.parentElement.parentElement
   const taskId = row.getAttribute("data-id")
   let pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || []
@@ -247,7 +247,7 @@ export function toggleFavorite(button) {
   }
 }
 
-export function addTaskOpen() {
+function addTaskOpen() {
   const modal = document.querySelector(".taskModal-wrap")
   modal.style.display = "block"
   setTimeout(() => {
@@ -263,7 +263,7 @@ export function addTaskOpen() {
   }
 }
 
-export function addTaskClose() {
+function addTaskClose() {
   const modal = document.querySelector(".taskModal-wrap")
   modal.style.opacity = 0
   setTimeout(() => {
@@ -278,7 +278,7 @@ export function addTaskClose() {
   editingTaskId = null
 }
 
-export function confirmTask() {
+function confirmTask() {
   if (isEditing) {
     const updatedTask = {
       id: editingTaskId,
@@ -310,7 +310,7 @@ export function confirmTask() {
   addTaskClose()
 }
 
-export function filterTasks(tasks, filter) {
+function filterTasks(tasks, filter) {
   if (filter === "All" || !filter) {
     console.log("No filter applied, returning all tasks")
     return tasks // 필터가 "All"이거나 필터 값이 없으면 필터링하지 않고 전체 반환
