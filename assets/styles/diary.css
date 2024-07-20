@@ -115,17 +115,13 @@ body {
   margin-bottom: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   line-height: 30px;
-  transition: transform 0.5s ease-in-out;
 }
 .entries-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3개의 열을 생성 */
   gap: 10px; /* 항목 간의 간격 */
 }
-.entry.show {
-  opacity: 1;
-  transform: translateX(0);
-}
+
 .button-box {
   display: flex; /* 버튼들을 가로로 정렬하기 위해 Flexbox 사용 */
 }

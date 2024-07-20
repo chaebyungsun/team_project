@@ -6,6 +6,9 @@
     <title>diary_list</title>
     <link rel="stylesheet" href="./assets/styles/reset.css" />
     <link rel="stylesheet" href="./assets/styles/diary.css" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link rel="stylesheet" href="./assets/styles/weather.css" />
+    <link rel="stylesheet" href="./assets/styles/responsive.css" />
     <script
       src="https://kit.fontawesome.com/ace988cf56.js"
       crossorigin="anonymous"
@@ -50,7 +53,9 @@
         <article class="list_box">
           <div>
             <button id="add_button">
-              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+              <a href="diary.html"
+                ><i class="fa-solid fa-plus" aria-hidden="true"></i
+              ></a>
             </button>
           </div>
           <!-- 일기 추가 리스트 -->
@@ -83,6 +88,9 @@
       </main>
     </div>
     <!-- 통합된 JavaScript 경로 -->
+    <script src="./assets/js/apikey.js"></script>
     <script src="./assets/js/diary.js"></script>
+    <script src="./assets/js/weather.js"></script>
+    <script src="./assets/js/menuopen.js"></script>
   </body>
 </html>
