@@ -86,11 +86,6 @@ const loadEntries = () => {
     entryContent.addEventListener("click", () => {
       viewEntryContent.textContent = entryContent.textContent; // 확인 모달에 일기 내용 설정
       viewModal.style.display = "block"; // 확인 모달 표시
-
-      // 추가된 일기 항목에 애니메이션 클래스 적용
-      setTimeout(() => {
-        entryDiv.classList.add("show");
-      }, 100);
     });
   });
 };
@@ -174,11 +169,6 @@ const addEntry = () => {
     viewEntryContent.textContent = entryContent.textContent; // 확인 모달에 일기 내용 설정
     viewModal.style.display = "block"; // 확인 모달 표시
   });
-
-  // 추가된 일기 항목에 애니메이션 클래스 적용
-  setTimeout(() => {
-    entryDiv.classList.add("show");
-  }, 100);
 
   saveEntries(); // 일기 추가 후 로컬 스토리지에 저장
 };

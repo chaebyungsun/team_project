@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>diary</title>
+    <!-- 통합된 CSS 경로 -->
+    <link rel="stylesheet" href="./assets/styles/reset.css" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link rel="stylesheet" href="./assets/styles/diary.css" />
+    <link rel="stylesheet" href="./assets/styles/weather.css" />
+    <link rel="stylesheet" href="./assets/styles/responsive.css" />
+
+    <script
+      src="https://kit.fontawesome.com/ace988cf56.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <ul class="nav mobile">
+        <li>
+          <i class="fa-solid fa-house"></i>
+          <span><a href="./index.html">Dashboard</a></span>
+        </li>
+        <li>
+          <i class="fa-solid fa-list-ul"></i>
+          <span><a href="./task.html">Task</a></span>
+        </li>
+        <li class="active">
+          <i class="fa-solid fa-newspaper"></i>
+          <span><a href="./diary.html">Diary</a></span>
+        </li>
+      </ul>
+      <main class="inner">
+        <header>
+          <button class="open-menu hide">
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 class="logo">
+            <a href="#">Diary</a>
+          </h1>
+          <div id="weather-box"></div>
+        </header>
+        <article>
+          <div class="tittle">
+            <span>Tittle</span>
+            <input
+              type="text"
+              id="diary-title"
+              placeholder="제목을 입력하세요"
+            />
+          </div>
+          <div class="date">
+            <span>Date</span>
+            <input type="date" id="diary-date" />
+          </div>
+          <textarea
+            id="diary-entry"
+            placeholder="오늘의 일기를 입력하세요"
+          ></textarea>
+          <button id="add-entry">Save</button>
+        </article>
+        <!-- 일기 추가 리스트 -->
+        <div id="entries" class="entries-grid"></div>
+        <!-- 수정 모달 팝업 -->
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <!-- &times; = x 엔티티코드 -->
+            <span class="close-button">&times;</span>
+            <textarea id="edit-entry-textarea"></textarea>
+            <button id="save-edit">Save</button>
+          </div>
+        </div>
+        <!-- 확인 모달 팝업 -->
+        <div id="view-modal" class="modal">
+          <div class="modal-content">
+            <span class="close-view-button">&times;</span>
+            <textarea id="view-entry-content"></textarea>
+          </div>
+        </div>
+        <!-- 삭제 확인 모달 팝업 -->
+        <div id="delete-modal" class="modal">
+          <div class="modal-content">
+            <p>일기를 삭제하시겠습니까?</p>
+            <button id="confirm-delete">삭제</button>
+            <button id="cancel-delete">취소</button>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- 통합된 JavaScript 경로 -->
+    <script src="./assets/js/apikey.js"></script>
+    <script src="./assets/js/diary.js"></script>
+    <script src="./assets/js/weather.js"></script>
+    <script src="./assets/js/menuopen.js"></script>
+  </body>
+</html>
