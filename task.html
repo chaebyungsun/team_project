@@ -53,45 +53,44 @@
     <!-- taskModal end -->
 
     <div class="container">
-      <div class="pl"></div>
-      <!-- nav start -->
-       <div class="overlay"></div>
-      <ul class="nav mobile">
-        <li>
-          <!-- 닫기 버튼 -->
-          <button onclick="overlayClose()" class="close-menu hide">
-            <i class="fas fa-times"></i>
-          </button>
-        </li>
-        <li>
-          <i class="fa-solid fa-house"></i>
-          <span><a href="./index.html">Dashboard</a></span>
-        </li>
-        <li class="active">
-          <i class="fa-solid fa-list-ul active"></i>
-          <span><a href="./task.html">Task</a></span>
-        </li>
-        <li>
-          <i class="fa-solid fa-newspaper"></i>
-          <span><a href="./diary.html">Diary</a></span>
-        </li>
-      </ul>
-      <!-- nav end -->
+        <div class="pl"></div>
+        <!-- nav start -->
+        <div class="overlay"></div>
+        <ul class="nav mobile">
+            <li>
+                <!-- 닫기 버튼 -->
+                <button onclick="overlayClose()" class="close-menu hide">
+                    <i class="fas fa-times"></i>
+                </button>
+            </li>
+            <li>
+                <i class="fa-solid fa-house"></i>
+                <span><a href="./index.html">Dashboard</a></span>
+            </li>
+            <li class="active">
+                <i class="fa-solid fa-list-ul active"></i>
+                <span><a href="./task.html">Task</a></span>
+            </li>
+            <li>
+                <i class="fa-solid fa-newspaper"></i>
+                <span><a href="./diary.html">Diary</a></span>
+            </li>
+        </ul>
+        <!-- nav end -->
 
-      <!-- main start -->
-      <main role="main" class="inner">
-        <!-- header start -->
-        <header>
-          <button onclick="overlayOpen()" class="open-menu hide">
-            <i class="fas fa-bars"></i>
-          </button>
-          <h1 class="logo">
-            <a href="#">Tasks</a>
-          </h1>
-          <div id="weather-box"></div>
-        </header>
-        <!-- header end -->
->>>>>>> ksh
+        <!-- main start -->
+        <main role="main" class="inner">
+            <!-- header start -->
+            <header>
+                <button onclick="overlayOpen()" class="open-menu hide">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="logo">
+                    <a href="#">Tasks</a>
+                </h1>
+                <div id="weather-box"></div>
+            </header>
+            <!-- header end -->
 
             <!-- Add Task Box Start -->
             <div class="form-group">
@@ -105,8 +104,8 @@
                 <div class="task-header">
                     <h3 class="task-title">Pending Tasks -</h3>
                     <div class="task-dash-optionBox">
-                        <select class="task-dash-option" id="filter">
-                            <option value="">All</option>
+                        <select class="task-dash-option" id="pend-filter">
+                            <option value="All">All</option>
                             <option value="Favorite">Favorite</option>
                             <option value="Daily">Daily</option>
                             <option value="Weekly">Weekly</option>
@@ -130,7 +129,7 @@
                         </tr>
                     </thead>
                     <tbody id="pendingTasks">
-                        <tr id="noPendingTasks">
+                        <tr id="noPendingTasks" style="display: none;">
                             <td colspan="7" class="text-center">No tasks registered.</td>
                         </tr>
                     </tbody>
@@ -144,8 +143,8 @@
                 <div class="task-header">
                     <h3 class="task-title">Complete Tasks -</h3>
                     <div class="task-dash-optionBox">
-                        <select class="task-dash-option" id="filter">
-                            <option value="">All</option>
+                        <select class="task-dash-option" id="comp-filter">
+                            <option value="All">All</option>
                             <option value="Favorite">Favorite</option>
                             <option value="Daily">Daily</option>
                             <option value="Weekly">Weekly</option>
@@ -166,7 +165,7 @@
                         </tr>
                     </thead>
                     <tbody id="completedTasks">
-                        <tr id="noCompletedTasks">
+                        <tr id="noCompletedTasks" style="display: none;">
                             <td colspan="4" class="text-center no-task">
                                 No tasks registered.
                             </td>

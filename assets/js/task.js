@@ -22,6 +22,7 @@ function loadTasks() {
         document.getElementById("noPendingTasks").style.display = "table-row";
     } else {
         document.getElementById("noPendingTasks").style.display = "none";
+
         pendingTasks.forEach((task) => addTaskToDOM(task, false));
     }
 
@@ -227,6 +228,14 @@ function addTaskOpen() {
     setTimeout(() => {
         modal.style.opacity = 1;
     }, 10);
+
+    // 오늘 날짜와 현재 시간을 기본 값으로 설정
+    if (isEditing == false) {
+        let deadlineInput = document.getElementById("deadline");
+        const now = new Date();
+        const formattedDate = now.toISOString().slice(0, 16); // "YYYY-MM-DDTHH:MM" 형식
+        deadlineInput.value = formattedDate;
+    }
 }
 
 function addTaskClose() {
@@ -271,4 +280,39 @@ function confirmTask() {
         addTask();
     }
     addTaskClose();
+}
+
+function filterTasks(tasks, filter) {
+    if (filter === "All" || !filter) {
+        console.log("No filter applied, returning all tasks");
+        return tasks; // 필터가 "All"이거나 필터 값이 없으면 필터링하지 않고 전체 반환
+    }
+
+    const today = new Date();
+    const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay()));
+    const endOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 6));
+    const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+    switch (filter) {
+        case "Favorite":
+            return tasks.filter((task) => task.favorite);
+        case "Daily":
+            return tasks.filter((task) => {
+                const deadline = new Date(task.deadline);
+                return deadline.toDateString() === new Date().toDateString();
+            });
+        case "Weekly":
+            return tasks.filter((task) => {
+                const deadline = new Date(task.deadline);
+                return deadline >= startOfWeek && deadline <= endOfWeek;
+            });
+        case "Monthly":
+            return tasks.filter((task) => {
+                const deadline = new Date(task.deadline);
+                return deadline >= startOfMonth && deadline <= endOfMonth;
+            });
+        default:
+            return tasks;
+    }
 }
