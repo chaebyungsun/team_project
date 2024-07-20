@@ -9,8 +9,10 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/styles/reset.css" />
-    <link rel="stylesheet" href="./assets/styles/task.css" />
     <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link rel="stylesheet" href="./assets/styles/task.css" />
+    <link rel="stylesheet" href="./assets/styles/weather.css" />
+    <link rel="stylesheet" href="./assets/styles/responsive.css" />
 </head>
 
 <body>
@@ -38,51 +40,62 @@
                 </select>
             </div>
 
-
             <div class="taskModal-btnBox">
                 <button onclick="addTaskClose()" class="taskModal-cancel">
                     Cancel
                 </button>
-                <button class="taskModal-confirm" onclick="confirmTask()">Confirm</button>
+                <button class="taskModal-confirm" onclick="confirmTask()">
+                    Confirm
+                </button>
             </div>
         </div>
     </div>
     <!-- taskModal end -->
 
     <div class="container">
-        <!-- nav start -->
-        <ul class="nav">
-            <li>
-                <i class="fa-solid fa-house"></i>
-                <span><a href="./index.html">Dashboard</a></span>
-            </li>
-            <li class="active">
-                <i class="fa-solid fa-list-ul active"></i>
-                <span><a href="./task.html">Task</a></span>
-            </li>
-            <li>
-                <i class="fa-solid fa-newspaper"></i>
-                <span><a href="./diary.html">Diary</a></span>
-            </li>
-        </ul>
-        <!-- nav end -->
+      <div class="pl"></div>
+      <!-- nav start -->
+       <div class="overlay"></div>
+      <ul class="nav mobile">
+        <li>
+          <!-- 닫기 버튼 -->
+          <button onclick="overlayClose()" class="close-menu hide">
+            <i class="fas fa-times"></i>
+          </button>
+        </li>
+        <li>
+          <i class="fa-solid fa-house"></i>
+          <span><a href="./index.html">Dashboard</a></span>
+        </li>
+        <li class="active">
+          <i class="fa-solid fa-list-ul active"></i>
+          <span><a href="./task.html">Task</a></span>
+        </li>
+        <li>
+          <i class="fa-solid fa-newspaper"></i>
+          <span><a href="./diary.html">Diary</a></span>
+        </li>
+      </ul>
+      <!-- nav end -->
 
-        <!-- main start -->
-        <main role="main" class="inner">
-            <!-- header start -->
-            <header>
-                <h1 class="logo">
-                    <a href="#">Tasks</a>
-                </h1>
-                <div id="weather-box"></div>
-            </header>
-            <!-- header end -->
+      <!-- main start -->
+      <main role="main" class="inner">
+        <!-- header start -->
+        <header>
+          <button onclick="overlayOpen()" class="open-menu hide">
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 class="logo">
+            <a href="#">Tasks</a>
+          </h1>
+          <div id="weather-box"></div>
+        </header>
+        <!-- header end -->
+>>>>>>> ksh
 
             <!-- Add Task Box Start -->
             <div class="form-group">
-                <button class="btn btn-primary add-button task-addBtn" onclick="addTaskOpen()">
-                    <i class="fas fa-plus"></i>
-                </button>
+                <button class="add-button" onclick="addTaskOpen()">+ Add Task</button>
             </div>
             <!-- Add Task Box end -->
 
@@ -93,10 +106,11 @@
                     <h3 class="task-title">Pending Tasks -</h3>
                     <div class="task-dash-optionBox">
                         <select class="task-dash-option" id="filter">
-                            <option value="">Filter All</option>
-                            <option value="Category">Category</option>
+                            <option value="">All</option>
                             <option value="Favorite">Favorite</option>
                             <option value="Daily">Daily</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Monthly">Monthly</option>
                         </select>
                     </div>
                 </div>
@@ -131,10 +145,11 @@
                     <h3 class="task-title">Complete Tasks -</h3>
                     <div class="task-dash-optionBox">
                         <select class="task-dash-option" id="filter">
-                            <option value="">Filter All</option>
-                            <option value="Category">Category</option>
+                            <option value="">All</option>
                             <option value="Favorite">Favorite</option>
                             <option value="Daily">Daily</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Monthly">Monthly</option>
                         </select>
                     </div>
                 </div>
@@ -170,10 +185,13 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/10d8588d9a.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>s
     <script src="./assets/js/apikey.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/task.js"></script>
     <script src="./assets/js/weather.js"></script>
+    <script src="./assets/js/dropdown.js"></script>
+    <script src="./assets/js/menuopen.js"></script>
 </body>
 
 </html>

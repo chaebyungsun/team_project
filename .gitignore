@@ -130,6 +130,7 @@ dist
 .pnp.*
 
 .DS_Store
+assets/.DS_Store
 style.css.map
 main.scssc
 
