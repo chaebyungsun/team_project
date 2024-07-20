@@ -30,6 +30,7 @@ const saveEntries = () => {
 
 // 로컬 스토리지에서 일기 목록 불러오기
 const loadEntries = () => {
+  entriesDiv.innerHTML = ""; // 기존 항목 초기화
   const entries = JSON.parse(localStorage.getItem("diaryEntries")) || []; // 로컬 스토리지에서 일기 목록을 불러오거나 빈 배열 생성
   entries.forEach((entry) => {
     const entryDiv = document.createElement("div"); // 새로운 일기 항목 div 생성
@@ -89,6 +90,7 @@ const loadEntries = () => {
     });
   });
 };
+
 
 // 일기를 추가하는 함수 정의
 const addEntry = () => {
@@ -172,14 +174,6 @@ const addEntry = () => {
 
   saveEntries(); // 일기 추가 후 로컬 스토리지에 저장
 };
-
-addEntryButton.addEventListener("click", () => {
-  addEntry();
-  window.location.hash = "#list"; // 라우팅 변경
-});
-
-// 추가 버튼 클릭 시 addEntry 함수 실행
-addEntryButton.addEventListener("click", addEntry);
 
 // 확인 모달 닫기 버튼 클릭 시 모달 숨김 처리
 closeViewButton.addEventListener("click", () => {
