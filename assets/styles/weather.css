@@ -1,3 +1,10 @@
+#weather-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
 .weather-wrap {
   margin-bottom: 2px;
   font-size: 24px;
