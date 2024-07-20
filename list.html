@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>diary_list</title>
+    <title>list</title>
     <link rel="stylesheet" href="./assets/styles/reset.css" />
     <link rel="stylesheet" href="./assets/styles/diary.css" />
     <link rel="stylesheet" href="./assets/styles/style.css" />
@@ -50,7 +50,7 @@
             <a href="#">Diary</a>
           </h1>
         </header>
-        <article class="list_box">
+        <section class="list_box">
           <div>
             <button id="add_button">
               <a href="diary.html"
@@ -58,38 +58,46 @@
               ></a>
             </button>
           </div>
-          <!-- 일기 추가 리스트 -->
           <div id="entries" class="entries-grid"></div>
-          <!-- 수정 모달 팝업 -->
-          <div id="modal" class="modal">
-            <div class="modal-content">
-              <!-- &times; = x 엔티티코드 -->
-              <span class="close-button">&times;</span>
-              <textarea id="edit-entry-textarea"></textarea>
-              <button id="save-edit">Save</button>
-            </div>
+        </section>
+
+        <!-- 수정 모달 팝업 -->
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <!-- &times; = x 엔티티코드 -->
+            <span class="close-button">&times;</span>
+            <label for="edit-title">제목:</label>
+            <input type="text" id="edit-title" />
+            <label for="edit-date">날짜:</label>
+            <input type="date" id="edit-date" />
+            <label for="edit-entry-textarea">내용:</label>
+            <textarea id="edit-entry-textarea"></textarea>
+            <button id="save-edit">Save</button>
           </div>
-          <!-- 확인 모달 팝업 -->
-          <div id="view-modal" class="modal">
-            <div class="modal-content">
-              <span class="close-view-button">&times;</span>
-              <textarea id="view-entry-content"></textarea>
-            </div>
+        </div>
+        <!-- 확인 모달 팝업 -->
+        <div id="view-modal" class="modal">
+          <div class="modal-content">
+            <span class="close-view-button">&times;</span>
+            <textarea id="view-entry-content"></textarea>
           </div>
-          <!-- 삭제 확인 모달 팝업 -->
-          <div id="delete-modal" class="modal">
-            <div class="modal-content">
-              <p>일기를 삭제하시겠습니까?</p>
+        </div>
+        <!-- 삭제 확인 모달 팝업 -->
+        <div id="delete-modal" class="modal">
+          <div class="modal-content">
+            <p>일기를 삭제하시겠습니까?</p>
+            <div class="button-container">
               <button id="confirm-delete">삭제</button>
               <button id="cancel-delete">취소</button>
             </div>
           </div>
-        </article>
+        </div>
       </main>
     </div>
     <!-- 통합된 JavaScript 경로 -->
-    <script src="./assets/js/apikey.js"></script>
     <script src="./assets/js/diary.js"></script>
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/apikey.js"></script>
     <script src="./assets/js/weather.js"></script>
     <script src="./assets/js/menuopen.js"></script>
   </body>
