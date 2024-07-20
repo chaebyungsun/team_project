@@ -43,7 +43,7 @@
   right: 0;
   color: #333b69;
   font-size: 14px;
-  font-weight:bold;
+  font-weight: bold;
   cursor: pointer;
   float: left;
 }
@@ -95,12 +95,20 @@
 }
 
 .task-todo .task-table thead tr th,
+.task-todo .task-table tbody tr td,
 .task-todo .task-table tr td {
   height: 54px;
   font-size: 16px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.text-center.no-task {
+  justify-content: center !important;
+  font-size: 24px;
+  font-weight: 500;
+  color: #8ba3cb;
 }
 
 .task-todo .task-table thead tr .favorite,
@@ -171,18 +179,8 @@
   background-color: #8359ba;
 }
 
-.text-center,
-.no-task {
-  display: flex;
-  justify-content: center !important;
-  width: 100% !important;
-  font-size: 24px;
-  font-weight: 500;
-  color: #8ba3cb;
-}
-
 /* IE */
-select::-ms-expand {
+/* select::-ms-expand {
   display: none;
 }
 select {
@@ -190,16 +188,16 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-}
+} */
 
 .task-dash-optionBox {
   width: 20%;
   position: relative;
 }
 
-.task-dash-optionBox select {
+/* .task-dash-optionBox select {
   display: none;
-}
+} */
 
 .select-selected {
   background-color: #fff;
@@ -360,6 +358,10 @@ select {
     height: 25px;
   }
 
+  .text-center.no-task {
+    justify-content: center !important;
+  }
+
   .task-todo .task-table tr td .fill-button {
     width: 15px;
     height: 15px;
@@ -381,6 +383,10 @@ select {
 @media screen and (max-width: 623px) {
   .form-group .add-button {
     font-size: 13px;
+  }
+
+  .text-center.no-task {
+    justify-content: center !important;
   }
 
   .task-todo .task-table tr td .fill-button {

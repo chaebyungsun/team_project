@@ -1,83 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tasks List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/styles/reset.css" />
     <link rel="stylesheet" href="./assets/styles/style.css" />
     <link rel="stylesheet" href="./assets/styles/task.css" />
     <link rel="stylesheet" href="./assets/styles/weather.css" />
     <link rel="stylesheet" href="./assets/styles/responsive.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- taskModal start -->
     <div class="taskModal-wrap">
-        <div class="taskModal">
-            <div class="taskModal-titleBox">
-                <h4 class="task-dash-title">My tasks</h4>
-                <button id="addTask-close-button" class="addTask-close" onclick="addTaskClose()">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <div class="taskModal-contentBox">
-                <span>Task*</span>
-                <input class="task-inputArea" type="text" placeholder="Enter a task" id="task" />
-                <span>Deadline*</span>
-                <input class="task-inputArea" type="datetime-local" id="deadline" />
-                <span>Category*</span>
-                <select class="task-inputArea" id="category">
-                    <option value="Personal">Personal</option>
-                    <option value="Work">Work</option>
-                    <option value="Study">Study</option>
-                    <option value="Others">Others</option>
-                </select>
-            </div>
-
-            <div class="taskModal-btnBox">
-                <button onclick="addTaskClose()" class="taskModal-cancel">
-                    Cancel
-                </button>
-                <button class="taskModal-confirm" onclick="confirmTask()">
-                    Confirm
-                </button>
-            </div>
+      <div class="taskModal">
+        <div class="taskModal-titleBox">
+          <h4 class="task-dash-title">My tasks</h4>
+          <button
+            id="addTask-close-button"
+            class="addTask-close"
+            onclick="addTaskClose()"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
+
+        <div class="taskModal-contentBox">
+          <span>Task*</span>
+          <input
+            class="task-inputArea"
+            type="text"
+            placeholder="Enter a task"
+            id="task"
+          />
+          <span>Deadline*</span>
+          <input class="task-inputArea" type="datetime-local" id="deadline" />
+          <span>Category*</span>
+          <select class="task-inputArea" id="category">
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+            <option value="Study">Study</option>
+            <option value="Others">Others</option>
+          </select>
+        </div>
+
+        <div class="taskModal-btnBox">
+          <button onclick="addTaskClose()" class="taskModal-cancel">
+            Cancel
+          </button>
+          <button class="taskModal-confirm" onclick="confirmTask()">
+            Confirm
+          </button>
+        </div>
+      </div>
     </div>
     <!-- taskModal end -->
 
     <div class="container">
-        <div class="pl"></div>
-        <!-- nav start -->
-        <div class="overlay"></div>
-        <ul class="nav mobile">
-            <li>
-                <!-- 닫기 버튼 -->
-                <button onclick="overlayClose()" class="close-menu hide">
-                    <i class="fas fa-times"></i>
-                </button>
-            </li>
-            <li>
-                <i class="fa-solid fa-house"></i>
-                <span><a href="./index.html">Dashboard</a></span>
-            </li>
-            <li class="active">
-                <i class="fa-solid fa-list-ul active"></i>
-                <span><a href="./task.html">Task</a></span>
-            </li>
-            <li>
-                <i class="fa-solid fa-newspaper"></i>
-                <span><a href="./diary.html">Diary</a></span>
-            </li>
-        </ul>
-        <!-- nav end -->
-
+      <div class="pl"></div>
+      <!-- nav start -->
+      <div class="overlay"></div>
+      <ul class="nav mobile">
+        <li>
+          <!-- 닫기 버튼 -->
+          <button onclick="overlayClose()" class="close-menu hide">
+            <i class="fas fa-times"></i>
+          </button>
+        </li>
+        <li>
+          <i class="fa-solid fa-house"></i>
+          <span><a href="./index.html">Dashboard</a></span>
+        </li>
+        <li class="active">
+          <i class="fa-solid fa-list-ul active"></i>
+          <span><a href="./task.html">Task</a></span>
+        </li>
+        <li>
+          <i class="fa-solid fa-newspaper"></i>
+          <span><a href="./diary.html">Diary</a></span>
+        </li>
+      </ul>
+      <!-- nav end -->
 
       <!-- main start -->
       <main role="main" class="inner">
@@ -93,105 +107,112 @@
         </header>
         <!-- header end -->
 
-            <!-- Add Task Box Start -->
-            <div class="form-group">
-                <button class="add-button" onclick="addTaskOpen()">+ Add Task</button>
+        <!-- Add Task Box Start -->
+        <div class="form-group">
+          <button class="add-button" onclick="addTaskOpen()">+ Add Task</button>
+        </div>
+        <!-- Add Task Box end -->
+
+        <!-- Pending Tasks start -->
+        <div class="task-todo">
+          <!-- pending tasks header start -->
+          <div class="task-header">
+            <h3 class="task-title">Pending Tasks -</h3>
+            <div class="task-dash-optionBox">
+              <select class="task-dash-option" id="pend-filter">
+                <option value="All">All</option>
+                <option value="Favorite">Favorite</option>
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+              </select>
             </div>
-            <!-- Add Task Box end -->
+          </div>
+          <!-- pending tasks header end -->
 
-            <!-- Pending Tasks start -->
-            <div class="task-todo">
-                <!-- pending tasks header start -->
-                <div class="task-header">
-                    <h3 class="task-title">Pending Tasks -</h3>
-                    <div class="task-dash-optionBox">
-                        <select class="task-dash-option" id="pend-filter">
-                            <option value="All">All</option>
-                            <option value="Favorite">Favorite</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Weekly">Weekly</option>
-                            <option value="Monthly">Monthly</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- pending tasks header end -->
+          <!-- pending tasks list start -->
+          <table class="task-table">
+            <thead>
+              <tr>
+                <th class="table-cell favorite">Favorites</th>
+                <th class="table-cell content">Content</th>
+                <th class="table-cell category">Category</th>
+                <th class="table-cell deadline">Deadline</th>
+                <th class="table-cell todo-complete"></th>
+                <th class="table-cell todo-edit"></th>
+                <th class="table-cell todo-delete"></th>
+              </tr>
+            </thead>
+            <tbody id="pendingTasks">
+              <tr id="noPendingTasks" style="display: none">
+                <td colspan="7" class="text-center no-task">
+                  No tasks registered.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- pending tasks list end -->
 
-                <!-- pending tasks list start -->
-                <table class="task-table">
-                    <thead>
-                        <tr>
-                            <th class="table-cell favorite">Favorites</th>
-                            <th class="table-cell content">Content</th>
-                            <th class="table-cell category">Category</th>
-                            <th class="table-cell deadline">Deadline</th>
-                            <th class="table-cell todo-complete"></th>
-                            <th class="table-cell todo-edit"></th>
-                            <th class="table-cell todo-delete"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="pendingTasks">
-                        <tr id="noPendingTasks" style="display: none;">
-                            <td colspan="7" class="text-center">No tasks registered.</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!-- complete tasks list start -->
+        <div class="complete-todo task-todo">
+          <!-- complete tasks header start -->
+          <div class="task-header">
+            <h3 class="task-title">Complete Tasks -</h3>
+            <div class="task-dash-optionBox">
+              <select class="task-dash-option" id="comp-filter">
+                <option value="All">All</option>
+                <option value="Favorite">Favorite</option>
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+              </select>
             </div>
-            <!-- pending tasks list end -->
+          </div>
+          <!-- complete tasks header end  -->
 
-            <!-- complete tasks list start -->
-            <div class="complete-todo task-todo">
-                <!-- complete tasks header start -->
-                <div class="task-header">
-                    <h3 class="task-title">Complete Tasks -</h3>
-                    <div class="task-dash-optionBox">
-                        <select class="task-dash-option" id="comp-filter">
-                            <option value="All">All</option>
-                            <option value="Favorite">Favorite</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Weekly">Weekly</option>
-                            <option value="Monthly">Monthly</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- complete tasks header end  -->
-
-                <!-- complete tasks list start -->
-                <table class="task-table">
-                    <thead>
-                        <tr>
-                            <th class="table-cell favorite">Favorites</th>
-                            <th class="table-cell content">Content</th>
-                            <th class="table-cell category">Category</th>
-                            <th class="table-cell deadline">Deadline</th>
-                        </tr>
-                    </thead>
-                    <tbody id="completedTasks">
-                        <tr id="noCompletedTasks" style="display: none;">
-                            <td colspan="4" class="text-center no-task">
-                                No tasks registered.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- complete tasks list end -->
-        </main>
-        <!-- main end -->
+          <!-- complete tasks list start -->
+          <table class="task-table">
+            <thead>
+              <tr>
+                <th class="table-cell favorite">Favorites</th>
+                <th class="table-cell content">Content</th>
+                <th class="table-cell category">Category</th>
+                <th class="table-cell deadline">Deadline</th>
+              </tr>
+            </thead>
+            <tbody id="completedTasks">
+              <tr id="noCompletedTasks" style="display: none">
+                <td colspan="4" class="text-center no-task">
+                  No tasks registered.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- complete tasks list end -->
+      </main>
+      <!-- main end -->
     </div>
     <!-- task end -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/10d8588d9a.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>s
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/10d8588d9a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+    s
     <script src="./assets/js/apikey.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/task.js"></script>
     <script src="./assets/js/weather.js"></script>
-    <script src="./assets/js/dropdown.js"></script>
+    <!-- <script src="./assets/js/dropdown.js"></script> -->
     <script src="./assets/js/menuopen.js"></script>
-</body>
-
+  </body>
 </html>

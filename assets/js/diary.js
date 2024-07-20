@@ -30,6 +30,7 @@ const saveEntries = () => {
 
 // 로컬 스토리지에서 일기 목록 불러오기
 const loadEntries = () => {
+  entriesDiv.innerHTML = ""; // 기존 항목 초기화
   const entries = JSON.parse(localStorage.getItem("diaryEntries")) || []; // 로컬 스토리지에서 일기 목록을 불러오거나 빈 배열 생성
   entries.forEach((entry) => {
     const entryDiv = document.createElement("div"); // 새로운 일기 항목 div 생성
@@ -89,6 +90,7 @@ const loadEntries = () => {
     });
   });
 };
+
 
 // 일기를 추가하는 함수 정의
 const addEntry = () => {
@@ -173,9 +175,6 @@ const addEntry = () => {
   saveEntries(); // 일기 추가 후 로컬 스토리지에 저장
 };
 
-// 추가 버튼 클릭 시 addEntry 함수 실행
-addEntryButton.addEventListener("click", addEntry);
-
 // 확인 모달 닫기 버튼 클릭 시 모달 숨김 처리
 closeViewButton.addEventListener("click", () => {
   viewModal.style.display = "none";
@@ -211,4 +210,41 @@ cancelDeleteButton.addEventListener("click", () => {
 });
 
 // 페이지 로드 시 로컬 스토리지에서 일기 목록 불러오기
-window.addEventListener("load", loadEntries);
+const showDiaryEntryPage = () => {
+  document.querySelector("article").style.display = "block";
+  document.querySelector("textarea#diary-entry").style.display = "block";
+  document.querySelector("#add-entry").style.display = "block";
+  entriesDiv.style.display = "none";
+};
+
+const showDiaryListPage = () => {
+  document.querySelector("article").style.display = "none";
+  document.querySelector("textarea#diary-entry").style.display = "none";
+  document.querySelector("#add-entry").style.display = "none";
+  entriesDiv.style.display = "block";
+  loadEntries();
+};
+
+// URL 기반 라우팅 설정
+window.addEventListener("load", () => {
+  if (window.location.pathname.endsWith("list.html")) {
+    showDiaryListPage();
+  } else if (window.location.pathname.endsWith("diary.html")) {
+    showDiaryEntryPage();
+  }
+});
+
+window.addEventListener("popstate", () => {
+  if (window.location.pathname.endsWith("list.html")) {
+    showDiaryListPage();
+  } else if (window.location.pathname.endsWith("diary.html")) {
+    showDiaryEntryPage();
+  }
+});
+
+// 일기를 추가한 후 목록 페이지로 라우팅
+addEntryButton.addEventListener("click", () => {
+  addEntry();
+  window.history.pushState({}, '', 'list.html');
+  showDiaryListPage();
+});
