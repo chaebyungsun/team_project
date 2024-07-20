@@ -233,17 +233,17 @@ const showDiaryListPage = () => {
 
 // URL 기반 라우팅 설정
 window.addEventListener("load", () => {
-  if (window.location.pathname === "/diary/lists.html") {
+  if (window.location.pathname.endsWith("list.html")) {
     showDiaryListPage();
-  } else if (window.location.pathname === "/diary.html") {
+  } else if (window.location.pathname.endsWith("diary.html")) {
     showDiaryEntryPage();
   }
 });
 
 window.addEventListener("popstate", () => {
-  if (window.location.pathname === "/diary/lists.html") {
+  if (window.location.pathname.endsWith("list.html")) {
     showDiaryListPage();
-  } else if (window.location.pathname === "/diary.html") {
+  } else if (window.location.pathname.endsWith("diary.html")) {
     showDiaryEntryPage();
   }
 });
@@ -251,6 +251,6 @@ window.addEventListener("popstate", () => {
 // 일기를 추가한 후 목록 페이지로 라우팅
 addEntryButton.addEventListener("click", () => {
   addEntry();
-  window.history.pushState({}, '', '/diary/lists.html');
+  window.history.pushState({}, '', 'list.html');
   showDiaryListPage();
 });
