@@ -152,7 +152,18 @@ body {
   color: #987aca;
   font-weight: bold;
 }
-
+/* #diary-main .nav li.active::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: #9e78cf;
+  border: 1px solid #9e78cf;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+} */
 .nav li.active::before {
   content: "";
   position: absolute;
@@ -512,6 +523,9 @@ header .search-bar::placeholder {
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
+}
+.task-diary-titleBox span:hover{
+  color:#987aca;
 }
 
 .dash-diary-tableBox {

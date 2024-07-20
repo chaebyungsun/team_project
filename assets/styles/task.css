@@ -41,8 +41,9 @@
 .form-group .add-button {
   position: absolute;
   right: 0;
-  color: #000;
-  font-size: 17px;
+  color: #333b69;
+  font-size: 14px;
+  font-weight:bold;
   cursor: pointer;
   float: left;
 }
