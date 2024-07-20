@@ -276,8 +276,8 @@ select {
   }
 }
 
-/** 타블렛 1023px 이하인 경우 */
-@media screen and (max-width: 1023px) {
+/** 타블렛 1024px 이하인 경우 */
+@media screen and (max-width: 1024px) {
   .task-title {
     font-size: 20px;
   }
@@ -311,7 +311,7 @@ select {
   }
 }
 
-/* 890px 이하인 경우 */
+/* 900px 이하인 경우 */
 @media screen and (max-width: 900px) {
   .task-todo .task-table tr td .fill-button {
     width: 15px;
@@ -330,7 +330,7 @@ select {
   }
 }
 
-/** 모바일 767px 이하인 경우 */
+/** 모바일 768px 이하인 경우 */
 @media screen and (max-width: 768px) {
   /* nav 기본 숨김 */
   .nav.mobile {
