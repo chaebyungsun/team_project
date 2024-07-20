@@ -100,9 +100,33 @@ document.addEventListener("DOMContentLoaded", () => {
   Array.from(contentElements).forEach((contentElement) => {
     if (contentElement) {
       let contentText = contentElement.innerText;
-      if (contentText.length > 45) {
-        contentElement.innerText = contentText.substring(0, 45) + '...';
+      if (contentText.length > 40) {
+        contentElement.innerText = contentText.substring(0, 40) + '...';
       }
     }
   });
 });
+
+const overLay = document.getElementById("overlay-open")
+
+function overlayOpen(){
+  const overlayElements = document.getElementsByClassName("overlay");
+
+  // 요소가 존재하는지 확인
+  if (overlayElements.length > 0) {
+    // 첫 번째 요소의 스타일을 변경
+    overlayElements[0].style.display = "block";
+  } else {
+    console.log("No elements with class 'overlay' found.");
+  }
+}
+function overlayClose(){
+  const overlayCloseBtn = document.getElementsByClassName("overlay");
+  // 요소가 존재하는지 확인
+  if (overlayCloseBtn.length > 0) {
+    // 첫 번째 요소의 스타일을 변경
+    overlayCloseBtn[0].style.display = "none";
+  } else {
+    console.log("No elements with class 'overlay' found.");
+  }
+}
