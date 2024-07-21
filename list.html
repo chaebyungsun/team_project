@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>list</title>
+    <link rel="stylesheet" href="./assets/styles/reset.css" />
+    <link rel="stylesheet" href="./assets/styles/diary.css" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link rel="stylesheet" href="./assets/styles/weather.css" />
+    <link rel="stylesheet" href="./assets/styles/responsive.css" />
+    <script
+      src="https://kit.fontawesome.com/ace988cf56.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <ul class="nav">
+        <li class="active">
+          <i class="fa-solid fa-house"></i>
+          <span>Dashboard</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-list-ul"></i>
+          <span>Task</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-newspaper"></i>
+          <span>Diary</span>
+        </li>
+        <li class="box-wrap">
+          <div id="date-box">
+            <div class="today-wrap">
+              <span id="today"></span>
+            </div>
+            <div class="date-wrap">
+              <span id="day"></span>
+              <span id="date"></span>
+              <span id="months"></span>
+              <span id="year"></span>
+            </div>
+          </div>
+          <div id="weather-box"></div>
+        </li>
+      </ul>
+      <main class="inner">
+        <header>
+          <h1 class="logo">
+            <a href="#">Diary</a>
+          </h1>
+        </header>
+        <section class="list_box">
+          <div>
+            <button id="add_button">
+              <a href="diary.html"
+                ><i class="fa-solid fa-plus" aria-hidden="true"></i
+              ></a>
+            </button>
+          </div>
+          <div id="entries" class="entries-grid"></div>
+        </section>
+
+        <!-- 수정 모달 팝업 -->
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <!-- &times; = x 엔티티코드 -->
+            <span class="close-button">&times;</span>
+            <label for="edit-title">제목:</label>
+            <input type="text" id="edit-title" />
+            <label for="edit-date">날짜:</label>
+            <input type="date" id="edit-date" />
+            <label for="edit-entry-textarea">내용:</label>
+            <textarea id="edit-entry-textarea"></textarea>
+            <button id="save-edit">Save</button>
+          </div>
+        </div>
+        <!-- 확인 모달 팝업 -->
+        <div id="view-modal" class="modal">
+          <div class="modal-content">
+            <span class="close-view-button">&times;</span>
+            <textarea id="view-entry-content"></textarea>
+          </div>
+        </div>
+        <!-- 삭제 확인 모달 팝업 -->
+        <div id="delete-modal" class="modal">
+          <div class="modal-content">
+            <p>일기를 삭제하시겠습니까?</p>
+            <div class="button-container">
+              <button id="confirm-delete">삭제</button>
+              <button id="cancel-delete">취소</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- 통합된 JavaScript 경로 -->
+    <script src="./assets/js/diary.js"></script>
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/apikey.js"></script>
+    <script src="./assets/js/weather.js"></script>
+    <script src="./assets/js/menuopen.js"></script>
+  </body>
+</html>
