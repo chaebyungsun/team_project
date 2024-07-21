@@ -126,22 +126,33 @@ const loadEntriesForTable = () => {
   
     const tableBody = document.getElementById("table-body")
 
-    // 일기 항목을 테이블에 추가합니다
-    entries.forEach((entry) => {
+    if (entries.length === 0) {
+        // 일기 목록이 비어 있을 때
         const row = document.createElement("tr");
-    
-        const contentCell = document.createElement("td");
-        contentCell.classList.add("table-tbody-content");
-        contentCell.textContent = entry.content.length > 50 ? entry.content.substring(0, 50) + "..." : entry.content;
-    
-        const dateCell = document.createElement("td");
-        dateCell.textContent = entry.date;
-    
-        row.appendChild(contentCell);
-        row.appendChild(dateCell);
-    
+        const cell = document.createElement("td");
+        cell.setAttribute("colspan", "2");
+        cell.textContent = "No Completed Diary";
+        cell.style.textAlign = "center"; // 중앙 정렬
+        row.appendChild(cell);
         tableBody.appendChild(row);
-      });
+    } else {
+        // 일기 항목을 테이블에 추가합니다
+        entries.forEach((entry) => {
+            const row = document.createElement("tr");
+        
+            const contentCell = document.createElement("td");
+            contentCell.classList.add("table-tbody-content");
+            contentCell.textContent = entry.content.length > 50 ? entry.content.substring(0, 50) + "..." : entry.content;
+        
+            const dateCell = document.createElement("td");
+            dateCell.textContent = entry.date;
+        
+            row.appendChild(contentCell);
+            row.appendChild(dateCell);
+        
+            tableBody.appendChild(row);
+        });
+    }
   };
   
   // 페이지 로드 시 로컬 스토리지에서 일기 목록 불러오기
