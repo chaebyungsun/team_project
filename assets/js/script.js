@@ -136,6 +136,9 @@ const loadEntriesForTable = () => {
         row.appendChild(cell);
         tableBody.appendChild(row);
     } else {
+        // 날짜 내림차순으로 정렬
+        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
         // 일기 항목을 테이블에 추가합니다
         entries.forEach((entry) => {
             const row = document.createElement("tr");
