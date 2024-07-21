@@ -29,14 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskToday = document.querySelector(".todo-dash-today")
   const taskTomorrow = document.querySelector(".todo-dash-tomorrow")
 
-  // 캘린더의 연월 정보 가져오기
-  const calendarYearMonthBox = document.getElementById("main-month-year")
-  const calendarYearMonth = calendarYearMonthBox.textContent
-
-  // 연월 정보를 분리 예: "July 2024" -> ["July", "2024"]
-  const monthString = calendarYearMonth.split(" ")[0]
-  const year = calendarYearMonth.split(" ")[1]
-
   // 월 이름을 숫자로 변환하는 함수
   const monthToNumber = (monthString) => {
     const months = {
@@ -56,8 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return months[monthString] // 월 이름을 숫자로 반환
   }
 
-  // monthString을 숫자로 변환
-  const month = monthToNumber(monthString)
+  // 날짜를 한 자리수로 표시하는 함수
+  const formatDay = (day) => {
+    return day.startsWith("0") ? day.substring(1) : day
+  }
 
   // 클릭한 날짜에 따라 할 일 타이틀 렌더링 함수
   const renderTaskTitle = (clickDate) => {
@@ -79,9 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const todayString = toKoreaTime(new Date()).toISOString().split("T")[0]
     const tomorrowString = tomorrowDate.toISOString().split("T")[0]
     // 내일 날짜의 일자를 가져오기
-    const tomorrowDay = tomorrowString.split("-")[2]
+    const tomorrowDay = formatDay(tomorrowString.split("-")[2])
     // 클릭한 날짜의 일자를 가져오기
-    const clickDay = clickDate.split("-")[2]
+    const clickDay = formatDay(clickDate.split("-")[2])
 
     // 오늘과 내일 타이틀을 설정
     // 클릭한 날짜가 오늘인 경우 "Today"로 설정
@@ -100,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 내일 날짜 객체 생성
     const tomorrow = toKoreaTime(new Date())
     // 내일 날짜로 설정
-    tomorrow.setDate(new Date().getDate() + 1)
+    tomorrow.setDate(tomorrow.getDate() + 1)
     // 내일 날짜를 "YYYY-MM-DD" 형식으로 가져오기
     const tomorrowString = tomorrow.toISOString().split("T")[0]
 
@@ -120,6 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </li>`
 
+    let hasTaskForToday = false
+    let hasTaskForTomorrow = false
+
     // pendingTasks 배열을 순회하며 날짜에 맞는 할 일을 추가합니다.
     pendingTasks.forEach((task) => {
       const taskDate = task.deadline.split("T")[0] // 할 일의 날짜를 가져오기
@@ -136,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <span>${taskTime}</span>
         `
+        hasTaskForToday = true
       } else if (taskDate === tomorrowString) {
         // 내일 날짜와 할 일의 날짜가 같은 경우
         const li = document.createElement("li")
@@ -147,11 +145,12 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <span>${taskTime}</span>
         `
+        hasTaskForTomorrow = true
       }
     })
 
     // 클릭한 날이 오늘이고 오늘 할 일이 없는 경우 오늘 할 일 타이틀에 "No tasks for today." 메시지를 추가
-    if (clickDate === today && taskToday.childElementCount === 1) {
+    if (clickDate === today && !hasTaskForToday) {
       const li = document.createElement("li")
       taskToday.appendChild(li)
       li.innerHTML = `
@@ -161,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `
     } // 클릭한 날이 오늘이고 내일 할 일이 없는 경우 내일 할 일 타이틀에 "No tasks for tomorrow." 메시지를 추가
-    else if (clickDate === today && taskTomorrow.childElementCount === 1) {
+    else if (clickDate === today && !hasTaskForTomorrow) {
       const li2 = document.createElement("li")
       taskTomorrow.appendChild(li2)
       li2.innerHTML = `
@@ -171,10 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `
     } // 그 외 클릭한 날짜에 할 일이 없는 경우 "No tasks registered." 메시지를 추가
-    else if (
-      taskToday.childElementCount === 1 &&
-      taskTomorrow.childElementCount === 1
-    ) {
+    if (!hasTaskForToday && !hasTaskForTomorrow && clickDate !== today) {
       const li = document.createElement("li")
       taskToday.appendChild(li)
       li.innerHTML = `
@@ -229,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
       renderTaskTitle(todayString) // 오늘 날짜의 타이틀 렌더링
     }
   }
+
   // 대쉬보드 내 캘린더 날짜를 가져와서
   // 연 월 일을 합쳐서 YYYY-MM-DD 형식으로 반환하고
   // 클릭한 날짜에 active 클래스를 추가하는 함수
@@ -238,6 +235,20 @@ document.addEventListener("DOMContentLoaded", () => {
       ".calendar-body .calendar-days div, .calendar-body .prev-month, .calendar-body .next-month"
     )
     calendarDates.forEach((dateElement) => {
+      // 캘린더의 연월 정보 가져오기
+      const calendarYearMonthBox = document.getElementById("main-month-year")
+      const calendarYearMonth = calendarYearMonthBox.textContent
+
+      // 연월 정보를 분리 예: "July 2024" -> ["July", "2024"]
+      const monthString = calendarYearMonth.split(" ")[0]
+      const year = calendarYearMonth.split(" ")[1]
+
+      // 월 이름을 숫자로 변환
+      monthToNumber(monthString)
+
+      // monthString을 숫자로 변환
+      const month = monthToNumber(monthString)
+
       // 날짜를 클릭하면
       dateElement.addEventListener("click", (event) => {
         const target = event.target
