@@ -113,7 +113,8 @@ body {
 /* 일기 항목 스타일 설정 */
 #entries {
   margin-top: 20px;
-  padding: 90px 0 0 20px;
+  padding: 90px 0 0 0;
+  margin-left: 20px;
 }
 
 .entry {
@@ -136,17 +137,17 @@ body {
   text-overflow: ellipsis; /* 넘치는 텍스트를 '...'으로 표시 */
   max-width: 100px; /* 한글 기준 최대 너비를 설정 (적절히 조정 필요) */
 }
-/* .entries-grid {
+.entries-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-} */
-.entries-grid {
+}
+/* .entries-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 10px;
-}
+} */
 #no-entries-message {
   text-align: center;
   padding-bottom: 90px;
@@ -335,5 +336,11 @@ body {
   }
   .entry-date {
     font-size: 14px;
+  }
+  .entries-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
   }
 }
