@@ -13,17 +13,10 @@ document.addEventListener("DOMContentLoaded", loadTasks);
 
 let isEditing = false; // 편집 모드 플래그
 let editingTaskId = null; // 편집 중인 태스크 ID
-let pendCount = 0;
-let compCount = 0;
 
 function loadTasks() {
     const pendingTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
     const completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
-
-    pendCount = pendingTasks.length;
-    compCount = completedTasks.length;
-
-    console.log("건수 : ", pendCount, compCount);
 
     if (pendingTasks.length === 0) {
         document.getElementById("noPendingTasks").style.display = "table-row";
