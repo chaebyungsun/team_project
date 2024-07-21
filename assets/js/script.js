@@ -119,3 +119,32 @@ function overlayClose() {
         console.log("No elements with class 'overlay' found.");
     }
 }
+const entries = JSON.parse(localStorage.getItem("diaryEntries")) || [];
+
+const loadEntriesForTable = () => {
+    const entries = JSON.parse(localStorage.getItem("diaryEntries")) || []; // 로컬 스토리지에서 일기 목록을 불러와서 배열에 추가합니다
+  
+    const tableBody = document.getElementById("table-body")
+
+    // 일기 항목을 테이블에 추가합니다
+    entries.forEach((entry) => {
+        const row = document.createElement("tr");
+    
+        const contentCell = document.createElement("td");
+        contentCell.classList.add("table-tbody-content");
+        contentCell.textContent = entry.content.length > 50 ? entry.content.substring(0, 50) + "..." : entry.content;
+    
+        const dateCell = document.createElement("td");
+        dateCell.textContent = entry.date;
+    
+        row.appendChild(contentCell);
+        row.appendChild(dateCell);
+    
+        tableBody.appendChild(row);
+      });
+  };
+  
+  // 페이지 로드 시 로컬 스토리지에서 일기 목록 불러오기
+  window.addEventListener("load", () => {
+    loadEntriesForTable();
+  });
