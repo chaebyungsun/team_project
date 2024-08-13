@@ -1,24 +1,27 @@
 // OpenWeatherMap API 키 설정
-const API_KEY = config.apikey
+const API_KEY = config.apikey;
 
 // 위치 정보를 받아 날씨 정보를 가져오는 함수 정의
 const getWeather = async (position) => {
   // 현재 위치의 위도(latitude)와 경도(longitude) 추출
-  const { latitude, longitude } = position.coords
+  const { latitude, longitude } = position.coords;
   // API 호출을 위한 URL 생성
   const url = new URL(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
-  )
+  );
 
   // 비동기 fetch 호출을 사용하여 API 요청
   try {
     // API로부터 응답을 받음
-    const response = await fetch(url)
+    const response = await fetch(url);
     // 응답을 JSON 형태로 파싱
-    const data = await response.json()
+    const data = await response.json();
+
+    console.log("API 응답 상태:", response.status); // 응답 상태 코드 확인
+    console.log("API 응답 데이터:", data); // API 응답을 콘솔에 출력
 
     // HTML 요소들을 ID를 사용하여 선택
-    const weatherBox = document.getElementById("weather-box")
+    const weatherBox = document.getElementById("weather-box");
 
     // 날씨에 따른 아이콘 설정
     const weatherIcons = {
@@ -38,7 +41,7 @@ const getWeather = async (position) => {
       Ash: "🌋",
       Squall: "🌬️",
       Tornado: "🌪️",
-    }
+    };
 
     // 날씨에 따른 메시지 설정
     const weatherMessages = {
@@ -59,13 +62,13 @@ const getWeather = async (position) => {
       Squall: "돌풍이 불어요!",
       Tornado: "날아가지 않게 조심해요",
       Clear: "오늘은 맑은 날 외출하자!!",
-    }
+    };
 
     // 온도에 따른 메시지 설정
     const tempMessages = {
       hot: "폭염 주의!!! 에어컨 가동!!",
       cold: "날씨가 추워요! 롱패딩 개시!!",
-    }
+    };
 
     // 날씨 정보를 통해 온도에 따른 메시지 결정
     const tempMessage =
@@ -78,13 +81,13 @@ const getWeather = async (position) => {
         ? //tempMessages.cold 메시지 반환
           tempMessages.cold
         : // 그 외의 경우 빈 문자열 반환
-          ""
+          "";
 
     // 날씨에 따른 메시지 결정
     const weatherMessage =
-      weatherMessages[data.weather[0].main] || "날씨 정보를 제공할 수 없어요."
+      weatherMessages[data.weather[0].main] || "날씨 정보를 제공할 수 없어요.";
 
-    console.log([data.weather[0].main])
+    console.log([data.weather[0].main]);
 
     // 날씨 아이콘과 메시지 설정
     weatherBox.innerHTML = `
@@ -95,20 +98,22 @@ const getWeather = async (position) => {
         <span id="weather-temp">${Math.ceil(data.main.temp)}°C</span>
       </div>
       <span id="weather-notice">${weatherMessage} <br /> ${tempMessage}</span>
-    `
+    `;
   } catch (error) {
     // 에러가 발생한 경우 알림 요소에 메시지 설정
-    const notice = document.getElementById("notice")
-    notice.innerText = "당신을 찾을 수 없어서 날씨 정보를 제공할 수 없어요."
+    const notice = document.getElementById("notice");
+    notice.innerText = "당신을 찾을 수 없어서 날씨 정보를 제공할 수 없어요.";
+    console.error("오류 메시지:", error); // 오류 메시지를 콘솔에 출력
   }
-}
+};
 
 // DOM이 완전히 로드된 후에 코드 실행
 document.addEventListener("DOMContentLoaded", () => {
   // 사용자의 현재 위치를 가져와 getWeather 함수를 호출
   navigator.geolocation.getCurrentPosition(getWeather, (error) => {
     // 위치 정보를 가져오지 못했을 경우의 에러 처리
-    const notice = document.getElementById("notice")
-    notice.innerText = "위치 정보를 가져오는데 실패했습니다."
-  })
-})
+    const notice = document.getElementById("notice");
+    notice.innerText = "위치 정보를 가져오는데 실패했습니다.";
+    console.error("위치 정보 오류:", error); // 위치 정보 오류를 콘솔에 출력
+  });
+});
